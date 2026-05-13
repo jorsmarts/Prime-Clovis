@@ -1,0 +1,16 @@
+# Sensitive config - contains DB credentials
+wp-config.php
+
+# Cache & temp files
+wp-content/cache/
+wp-content/upgrade/
+wp-content/upgrade-temp-backup/
+wp-content/w3tc-config/
+
+# Error logs
+php_errorlog
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
