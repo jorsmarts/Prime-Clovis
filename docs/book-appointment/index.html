@@ -215,8 +215,9 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
 .cs-icon.hours{background:rgba(68,81,98,.08);}
 .cs-icon svg{width:18px;height:18px;stroke:#2b3340;fill:none;stroke-width:2;}
 .cs-icon.phone svg{stroke:#2b3340;}
+.cs-text{min-width:0;overflow:hidden;}
 .cs-text span{display:block;font-size:11px;color:#9ca3af;font-weight:500;margin-bottom:2px;}
-.cs-text strong{display:block;font-size:13px;color:#2b3340;font-weight:700;}
+.cs-text strong{display:block;font-size:13px;color:#2b3340;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
 /* ── BLOG CARDS ── */
 .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
@@ -385,7 +386,7 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
   .problems-grid{grid-template-columns:1fr;}
   .stats-bar{flex-wrap:wrap;gap:24px;padding:28px 24px;}
   .stat-div{display:none;}
-  .contact-strip{grid-template-columns:repeat(2,1fr);}
+  .contact-strip{grid-template-columns:1fr!important;}
   .blog-grid{grid-template-columns:1fr;}
   .bf-row{grid-template-columns:1fr;}
   .cta-banner-inner{flex-direction:column;text-align:center;}
