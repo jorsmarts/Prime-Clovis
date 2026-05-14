@@ -589,31 +589,51 @@ body {
 .appliances-subtitle { font-size: 15px; color: #5a6472; line-height: 1.7; max-width: 640px; margin: 0; }
 .appliances-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-bottom: 40px; }
 .appliance-card {
-  background: #fff; border: 1px solid #dde2e8; border-radius: 12px;
-  padding: 24px; display: flex; align-items: center; gap: 20px;
-  transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s; cursor: pointer;
-  text-decoration: none; color: inherit;
+  background: #fff; border: 1px solid #dde2e8; border-radius: 14px;
+  padding: 22px 24px; display: flex; align-items: center; gap: 20px;
+  transition: box-shadow 0.28s, border-color 0.28s, transform 0.28s, background 0.28s;
+  cursor: pointer; text-decoration: none; color: inherit;
 }
-.appliance-card:hover { box-shadow: 0 8px 28px rgba(68,81,98,0.13); border-color: #445162; transform: translateY(-3px); }
+.appliance-card:hover {
+  box-shadow: 0 10px 32px rgba(43,51,64,0.14);
+  border-color: #2b3340;
+  background: #2b3340;
+  transform: translateY(-3px);
+}
 .appliance-image {
-  flex-shrink: 0; width: 80px; height: 80px; border-radius: 10px;
+  flex-shrink: 0; width: 80px; height: 80px; border-radius: 12px;
   background: #f0f3f6; display: flex; align-items: center; justify-content: center;
-  overflow: hidden; transition: background 0.25s;
+  overflow: hidden; transition: background 0.28s;
 }
-.appliance-card:hover .appliance-image { background: #445162; }
-.appliance-image img { width: 100%; height: 100%; object-fit: contain; padding: 12px; filter: grayscale(80%) opacity(0.75); transition: filter 0.25s, transform 0.25s; }
-.appliance-card:hover .appliance-image img { filter: grayscale(0%) opacity(1) brightness(1.1); transform: scale(1.05); }
+.appliance-card:hover .appliance-image { background: rgba(212,240,0,0.18); }
+.appliance-image img {
+  width: 100%; height: 100%; object-fit: contain; padding: 12px;
+  filter: grayscale(30%) opacity(0.85);
+  transition: filter 0.28s, transform 0.28s;
+}
+.appliance-card:hover .appliance-image img {
+  filter: brightness(0) invert(1);
+  transform: scale(1.08);
+}
 .appliance-info { flex: 1; }
-.appliance-info h4 { font-size: 17px; font-weight: 800; color: #2b3340; margin: 0 0 6px 0; line-height: 1.3; }
-.appliance-info p { font-size: 13px; color: #5a6472; margin: 0; line-height: 1.6; }
-.appliance-arrow {
-  flex-shrink: 0; width: 32px; height: 32px; border-radius: 8px;
-  background: #f0f3f6; display: flex; align-items: center; justify-content: center;
-  transition: background 0.25s, transform 0.25s;
+.appliance-info h4 {
+  font-size: 17px; font-weight: 800; color: #2b3340; margin: 0 0 5px 0;
+  line-height: 1.3; transition: color 0.28s;
 }
-.appliance-arrow svg { width: 18px; height: 18px; stroke: #445162; fill: none; stroke-width: 2.5; transition: stroke 0.25s; }
-.appliance-card:hover .appliance-arrow { background: #445162; transform: translateX(4px); }
-.appliance-card:hover .appliance-arrow svg { stroke: #fff; }
+.appliance-card:hover .appliance-info h4 { color: #d4f000; }
+.appliance-info p {
+  font-size: 13px; color: #5a6472; margin: 0; line-height: 1.6;
+  transition: color 0.28s;
+}
+.appliance-card:hover .appliance-info p { color: rgba(255,255,255,0.70); }
+.appliance-arrow {
+  flex-shrink: 0; width: 34px; height: 34px; border-radius: 9px;
+  background: #f0f3f6; display: flex; align-items: center; justify-content: center;
+  transition: background 0.28s, transform 0.28s;
+}
+.appliance-arrow svg { width: 18px; height: 18px; stroke: #445162; fill: none; stroke-width: 2.5; transition: stroke 0.28s; }
+.appliance-card:hover .appliance-arrow { background: #d4f000; transform: translateX(5px); }
+.appliance-card:hover .appliance-arrow svg { stroke: #1e2432; }
 .appliances-cta {
   background: #445162; border-radius: 14px; padding: 32px 40px;
   text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px;
