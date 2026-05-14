@@ -96,9 +96,10 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
 .breadcrumb-inner .cur{color:#2b3340;font-weight:600;}
 
 /* ── SECTION WRAPPERS ── */
-.section-outer{display:flex;justify-content:center;padding:40px 32px;}
+.section-outer{display:flex;justify-content:center;padding:48px 32px;}
+.section-outer.section-outer--plain{padding:0 32px;}
 .section-box{
-  max-width:1100px;width:100%;padding:64px 48px;
+  max-width:1100px;width:100%;padding:64px 56px;
   background:linear-gradient(160deg,#f0f3f6 0%,#e8ecf0 50%,#eef1f5 100%);
   border-radius:20px;box-shadow:0 4px 32px rgba(68,81,98,.08);
 }
@@ -108,7 +109,8 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
 .section-sub{font-size:15px;color:#5a6472;line-height:1.7;max-width:640px;margin:0;}
 
 /* ── CONTENT + SIDEBAR LAYOUT ── */
-.content-wrap{max-width:1100px;margin:0 auto;padding:64px 32px;display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:start;}
+/* content-wrap is always wrapped in .section-outer > .section-box for consistent gutter */
+.content-wrap{width:100%;padding:0;display:grid;grid-template-columns:1fr 300px;gap:52px;align-items:start;}
 .prose h2{font-size:clamp(20px,2.5vw,28px);font-weight:800;color:#2b3340;margin:36px 0 14px;line-height:1.25;}
 .prose h2:first-child{margin-top:0;}
 .prose h3{font-size:18px;font-weight:700;color:#445162;margin:28px 0 10px;}
@@ -178,7 +180,8 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
 .stat-div{width:1px;height:44px;background:rgba(255,255,255,.12);flex-shrink:0;}
 
 /* ── BOOKING SECTION ── */
-.booking-section{max-width:1100px;margin:0 auto;padding:80px 32px;}
+.booking-section{display:flex;justify-content:center;padding:56px 32px;background:#fafbfc;}
+.booking-section-inner{max-width:1100px;width:100%;}
 .booking-top{text-align:center;margin-bottom:40px;}
 .booking-badge{display:inline-flex;align-items:center;gap:8px;background:#e8ebee;color:#445162;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:50px;margin-bottom:16px;}
 .booking-badge svg{width:12px;height:12px;stroke:#445162;fill:none;stroke-width:2.5;}
@@ -327,7 +330,7 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
   .site-navbar{width:calc(100% - 32px);}
   .nav-inner{padding:12px 20px;}
   .footer-top{grid-template-columns:1fr 1fr;gap:32px;}
-  .content-wrap{grid-template-columns:1fr;padding:48px 24px;}
+  .content-wrap{grid-template-columns:1fr;gap:32px;}
   .sidebar{position:static;}
   .post-layout{grid-template-columns:1fr;padding:48px 24px;}
   .post-sidebar{position:static;}
@@ -336,6 +339,7 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
   .blog-grid{grid-template-columns:repeat(2,1fr);}
   .bf-row{grid-template-columns:repeat(2,1fr);}
   .brands-grid-5{grid-template-columns:repeat(3,1fr);}
+  .section-box{padding:48px 36px;}
 }
 @media(max-width:768px){
   .site-navbar{position:fixed!important;top:0!important;left:0!important;right:0!important;transform:none!important;width:100%!important;max-width:none!important;border-radius:0!important;margin-top:0!important;}
@@ -359,7 +363,8 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
   .drop-menu a{padding:10px 36px;}
   .has-drop::after{display:none;}
   .inner-hero{padding:100px 20px 60px;}
-  .section-outer{padding:24px 20px;}
+  .section-outer{padding:20px 16px;}
+  .section-outer.section-outer--plain{padding:0 16px;}
   .section-box{padding:36px 24px;}
   .why-grid{grid-template-columns:1fr;}
   .services-grid{grid-template-columns:1fr;}
@@ -372,13 +377,14 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
   .cta-banner-inner{flex-direction:column;text-align:center;}
   .cta-banner-btns{justify-content:center;}
   .footer-top{grid-template-columns:1fr;}
-  .footer-outer{padding:24px 20px 0;}
+  .footer-outer{padding:20px 16px 0;}
   .footer-wrap{padding:40px 24px 24px;border-radius:12px 12px 0 0;}
   .breadcrumb-bar{padding:10px 20px;}
-  .booking-section{padding:48px 20px;}
+  .booking-section{padding:36px 16px;}
   .booking-card{padding:24px 20px;}
   .brands-grid-5{grid-template-columns:repeat(2,1fr);}
   .post-hero{padding:100px 20px 0;}
+  .content-wrap{grid-template-columns:1fr;gap:24px;}
 }
 </style>
 </head>
@@ -446,18 +452,22 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
     <a href="/Prime-Clovis/">Home</a><span class="sep">›</span><span class="cur">Privacy Policy</span>
   </div>
 </div>
-<div style="max-width:800px;margin:0 auto;padding:64px 32px;">
-  <p style="font-size:13px;color:#9ca3af;margin-bottom:32px;">Last updated: January 1, 2026</p>
-  <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">Information We Collect</h2>
-  <p style="font-size:15px;color:#5a6472;line-height:1.8;">We collect information you provide directly to us, such as your name, phone number, email address, and service address when you book an appointment or contact us.</p>
-  <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">How We Use Your Information</h2>
-  <p style="font-size:15px;color:#5a6472;line-height:1.8;">We use the information we collect to schedule and provide appliance repair services, communicate with you about your appointment, and improve our services.</p>
-  <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">Information Sharing</h2>
-  <p style="font-size:15px;color:#5a6472;line-height:1.8;">We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as required by law.</p>
-  <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">Cookies</h2>
-  <p style="font-size:15px;color:#5a6472;line-height:1.8;">Our website may use cookies to enhance your browsing experience. You can choose to disable cookies in your browser settings, though this may affect some functionality.</p>
-  <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">Contact Us</h2>
-  <p style="font-size:15px;color:#5a6472;line-height:1.8;">If you have questions about this Privacy Policy, please contact us at <a href="tel:+15597650303" style="color:#445162;font-weight:700;">(559) 765-0303</a> or <a href="mailto:appliancerepairserviceus@gmail.com" style="color:#445162;font-weight:700;">appliancerepairserviceus@gmail.com</a>.</p>
+<div class="section-outer">
+<div class="section-box">
+  <div style="max-width:800px;">
+    <p style="font-size:13px;color:#9ca3af;margin-bottom:32px;">Last updated: January 1, 2026</p>
+    <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">Information We Collect</h2>
+    <p style="font-size:15px;color:#5a6472;line-height:1.8;">We collect information you provide directly to us, such as your name, phone number, email address, and service address when you book an appointment or contact us.</p>
+    <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">How We Use Your Information</h2>
+    <p style="font-size:15px;color:#5a6472;line-height:1.8;">We use the information we collect to schedule and provide appliance repair services, communicate with you about your appointment, and improve our services.</p>
+    <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">Information Sharing</h2>
+    <p style="font-size:15px;color:#5a6472;line-height:1.8;">We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as required by law.</p>
+    <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">Cookies</h2>
+    <p style="font-size:15px;color:#5a6472;line-height:1.8;">Our website may use cookies to enhance your browsing experience. You can choose to disable cookies in your browser settings, though this may affect some functionality.</p>
+    <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">Contact Us</h2>
+    <p style="font-size:15px;color:#5a6472;line-height:1.8;">If you have questions about this Privacy Policy, please contact us at <a href="tel:+15597650303" style="color:#445162;font-weight:700;">(559) 765-0303</a> or <a href="mailto:appliancerepairserviceus@gmail.com" style="color:#445162;font-weight:700;">appliancerepairserviceus@gmail.com</a>.</p>
+  </div>
+</div>
 </div>
 <div class="footer-outer">
 <div class="footer-wrap">

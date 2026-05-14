@@ -111,9 +111,10 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
 .breadcrumb-inner .cur{color:#2b3340;font-weight:600;}
 
 /* ── SECTION WRAPPERS ── */
-.section-outer{display:flex;justify-content:center;padding:40px 32px;}
+.section-outer{display:flex;justify-content:center;padding:48px 32px;}
+.section-outer.section-outer--plain{padding:0 32px;}
 .section-box{
-  max-width:1100px;width:100%;padding:64px 48px;
+  max-width:1100px;width:100%;padding:64px 56px;
   background:linear-gradient(160deg,#f0f3f6 0%,#e8ecf0 50%,#eef1f5 100%);
   border-radius:20px;box-shadow:0 4px 32px rgba(68,81,98,.08);
 }
@@ -123,7 +124,8 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
 .section-sub{font-size:15px;color:#5a6472;line-height:1.7;max-width:640px;margin:0;}
 
 /* ── CONTENT + SIDEBAR LAYOUT ── */
-.content-wrap{max-width:1100px;margin:0 auto;padding:64px 32px;display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:start;}
+/* content-wrap is always wrapped in .section-outer > .section-box for consistent gutter */
+.content-wrap{width:100%;padding:0;display:grid;grid-template-columns:1fr 300px;gap:52px;align-items:start;}
 .prose h2{font-size:clamp(20px,2.5vw,28px);font-weight:800;color:#2b3340;margin:36px 0 14px;line-height:1.25;}
 .prose h2:first-child{margin-top:0;}
 .prose h3{font-size:18px;font-weight:700;color:#445162;margin:28px 0 10px;}
@@ -193,7 +195,8 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
 .stat-div{width:1px;height:44px;background:rgba(255,255,255,.12);flex-shrink:0;}
 
 /* ── BOOKING SECTION ── */
-.booking-section{max-width:1100px;margin:0 auto;padding:80px 32px;}
+.booking-section{display:flex;justify-content:center;padding:56px 32px;background:#fafbfc;}
+.booking-section-inner{max-width:1100px;width:100%;}
 .booking-top{text-align:center;margin-bottom:40px;}
 .booking-badge{display:inline-flex;align-items:center;gap:8px;background:#e8ebee;color:#445162;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:50px;margin-bottom:16px;}
 .booking-badge svg{width:12px;height:12px;stroke:#445162;fill:none;stroke-width:2.5;}
@@ -342,7 +345,7 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
   .site-navbar{width:calc(100% - 32px);}
   .nav-inner{padding:12px 20px;}
   .footer-top{grid-template-columns:1fr 1fr;gap:32px;}
-  .content-wrap{grid-template-columns:1fr;padding:48px 24px;}
+  .content-wrap{grid-template-columns:1fr;gap:32px;}
   .sidebar{position:static;}
   .post-layout{grid-template-columns:1fr;padding:48px 24px;}
   .post-sidebar{position:static;}
@@ -351,6 +354,7 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
   .blog-grid{grid-template-columns:repeat(2,1fr);}
   .bf-row{grid-template-columns:repeat(2,1fr);}
   .brands-grid-5{grid-template-columns:repeat(3,1fr);}
+  .section-box{padding:48px 36px;}
 }
 @media(max-width:768px){
   .site-navbar{position:fixed!important;top:0!important;left:0!important;right:0!important;transform:none!important;width:100%!important;max-width:none!important;border-radius:0!important;margin-top:0!important;}
@@ -374,7 +378,8 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
   .drop-menu a{padding:10px 36px;}
   .has-drop::after{display:none;}
   .inner-hero{padding:100px 20px 60px;}
-  .section-outer{padding:24px 20px;}
+  .section-outer{padding:20px 16px;}
+  .section-outer.section-outer--plain{padding:0 16px;}
   .section-box{padding:36px 24px;}
   .why-grid{grid-template-columns:1fr;}
   .services-grid{grid-template-columns:1fr;}
@@ -387,13 +392,14 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
   .cta-banner-inner{flex-direction:column;text-align:center;}
   .cta-banner-btns{justify-content:center;}
   .footer-top{grid-template-columns:1fr;}
-  .footer-outer{padding:24px 20px 0;}
+  .footer-outer{padding:20px 16px 0;}
   .footer-wrap{padding:40px 24px 24px;border-radius:12px 12px 0 0;}
   .breadcrumb-bar{padding:10px 20px;}
-  .booking-section{padding:48px 20px;}
+  .booking-section{padding:36px 16px;}
   .booking-card{padding:24px 20px;}
   .brands-grid-5{grid-template-columns:repeat(2,1fr);}
   .post-hero{padding:100px 20px 0;}
+  .content-wrap{grid-template-columns:1fr;gap:24px;}
 }
 """
 
@@ -620,58 +626,60 @@ def hero_btns(primary_text="Book Online", primary_href="/Prime-Clovis/book-an-ap
 def booking_section():
     return f"""
 <section class="booking-section">
-  <div class="booking-top">
-    <div class="booking-badge">
-      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      Book Online
+  <div class="booking-section-inner">
+    <div class="booking-top">
+      <div class="booking-badge">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Book Online
+      </div>
+      <h2 class="booking-title">Book an Appointment Online</h2>
+      <p class="booking-sub">Quick and easy — fill in your details and our team will contact you to confirm.</p>
     </div>
-    <h2 class="booking-title">Book an Appointment Online</h2>
-    <p class="booking-sub">Quick and easy — fill in your details and our team will contact you to confirm.</p>
-  </div>
-  <div class="booking-card">
-    <form id="bookingForm">
-      <div class="bf-row">
-        <div class="bf-group"><label>Full Name</label><input type="text" name="name" placeholder="John Smith" required></div>
-        <div class="bf-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="(559) 000-0000" required></div>
-        <div class="bf-group"><label>Zip Code</label><input type="text" name="zip" placeholder="93720" required></div>
-        <div class="bf-group"><label>Appliance Type</label>
-          <select name="appliance" required>
-            <option value="">Select...</option>
-            <option>Refrigerator</option><option>Washer</option><option>Dryer</option>
-            <option>Dishwasher</option><option>Oven / Range</option><option>Microwave</option>
-            <option>Freezer</option><option>Ice Maker</option><option>Wine Cooler</option>
-            <option>Garbage Disposal</option><option>Other</option>
-          </select>
+    <div class="booking-card">
+      <form id="bookingForm">
+        <div class="bf-row">
+          <div class="bf-group"><label>Full Name</label><input type="text" name="name" placeholder="John Smith" required></div>
+          <div class="bf-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="(559) 000-0000" required></div>
+          <div class="bf-group"><label>Zip Code</label><input type="text" name="zip" placeholder="93720" required></div>
+          <div class="bf-group"><label>Appliance Type</label>
+            <select name="appliance" required>
+              <option value="">Select...</option>
+              <option>Refrigerator</option><option>Washer</option><option>Dryer</option>
+              <option>Dishwasher</option><option>Oven / Range</option><option>Microwave</option>
+              <option>Freezer</option><option>Ice Maker</option><option>Wine Cooler</option>
+              <option>Garbage Disposal</option><option>Other</option>
+            </select>
+          </div>
         </div>
-      </div>
-      <div class="bf-group bf-full"><label>Describe the Issue</label><textarea name="issue" placeholder="Tell us what's happening with your appliance..." required></textarea></div>
-      <div class="bf-foot">
-        <p class="bf-note"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Your info is safe and never shared.</p>
-        <button type="submit" class="bf-submit"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Send My Request</button>
-      </div>
-    </form>
-    <div id="formMsg" class="form-msg"></div>
-  </div>
-  <div class="contact-strip">
-    <a class="cs-card" href="tel:{PHONE_RAW}">
-      <div class="cs-icon phone"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 010 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg></div>
-      <div class="cs-text"><span>Call Us</span><strong>{PHONE}</strong></div>
-    </a>
-    <a class="cs-card" href="mailto:{EMAIL}">
-      <div class="cs-icon email"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-      <div class="cs-text"><span>Email Us</span><strong>appliancerepairserviceus</strong></div>
-    </a>
-    <a class="cs-card" href="https://wa.me/message/7XVFDXQTK2XSP1" target="_blank">
-      <div class="cs-icon chat"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
-      <div class="cs-text"><span>WhatsApp</span><strong>Click to Chat</strong></div>
-    </a>
-    <div class="cs-card">
-      <div class="cs-icon hours"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-      <div class="cs-text"><span>Mon–Fri</span><strong>7:00 AM – 7:00 PM</strong></div>
+        <div class="bf-group bf-full"><label>Describe the Issue</label><textarea name="issue" placeholder="Tell us what's happening with your appliance..." required></textarea></div>
+        <div class="bf-foot">
+          <p class="bf-note"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Your info is safe and never shared.</p>
+          <button type="submit" class="bf-submit"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Send My Request</button>
+        </div>
+      </form>
+      <div id="formMsg" class="form-msg"></div>
     </div>
-    <div class="cs-card">
-      <div class="cs-icon hours"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-      <div class="cs-text"><span>Saturday</span><strong>7:00 AM – 7:00 PM</strong></div>
+    <div class="contact-strip">
+      <a class="cs-card" href="tel:{PHONE_RAW}">
+        <div class="cs-icon phone"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 010 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg></div>
+        <div class="cs-text"><span>Call Us</span><strong>{PHONE}</strong></div>
+      </a>
+      <a class="cs-card" href="mailto:{EMAIL}">
+        <div class="cs-icon email"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div class="cs-text"><span>Email Us</span><strong>appliancerepairserviceus</strong></div>
+      </a>
+      <a class="cs-card" href="https://wa.me/message/7XVFDXQTK2XSP1" target="_blank">
+        <div class="cs-icon chat"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
+        <div class="cs-text"><span>WhatsApp</span><strong>Click to Chat</strong></div>
+      </a>
+      <div class="cs-card">
+        <div class="cs-icon hours"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="cs-text"><span>Mon–Fri</span><strong>7:00 AM – 7:00 PM</strong></div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-icon hours"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="cs-text"><span>Saturday</span><strong>7:00 AM – 7:00 PM</strong></div>
+      </div>
     </div>
   </div>
 </section>"""
@@ -856,7 +864,7 @@ def build_about():
     <h2 class="section-title">From a Local Shop to a Trusted Name</h2>
     <p class="section-sub">We started with a simple promise — fast, honest appliance repair — and that hasn't changed since day one.</p>
   </div>
-  <div class="content-wrap" style="padding:0;grid-template-columns:1fr 1fr;">
+  <div class="content-wrap" style="grid-template-columns:1fr 280px;">
     <div class="prose">
       <p>We've been working in appliance repair since 2009, starting small and growing steadily over the years. What began as a local service has expanded into a trusted company serving homeowners across Fresno, Clovis, Madera, and surrounding areas. Most of our growth has come from word of mouth — customers who appreciate honest service and reliable results.</p>
       <p>From day one, we've focused on a few simple things: being honest with our customers, responding quickly, doing quality work, and standing behind every job. We believe repairs should be done right the first time, with clear communication and no unnecessary upselling.</p>
@@ -864,11 +872,11 @@ def build_about():
     </div>
     <div>"""
     content += """
-      <div class="stats-bar" style="flex-direction:column;gap:28px;padding:32px;">
+      <div class="stats-bar" style="flex-direction:column;gap:24px;padding:32px 24px;">
         <div class="stat-item"><div class="stat-num">15<em>+</em></div><div class="stat-lbl">Years Experience</div></div>
-        <div class="stat-div" style="width:80px;height:1px;"></div>
+        <div class="stat-div" style="width:60px;height:1px;"></div>
         <div class="stat-item"><div class="stat-num">54<em>k+</em></div><div class="stat-lbl">Repairs Completed</div></div>
-        <div class="stat-div" style="width:80px;height:1px;"></div>
+        <div class="stat-div" style="width:60px;height:1px;"></div>
         <div class="stat-item"><div class="stat-num">5.0<em>★</em></div><div class="stat-lbl">Average Rating</div></div>
       </div>
     </div>
@@ -1034,7 +1042,7 @@ def build_contact():
     content += f"""
 <div class="section-outer">
 <div class="section-box">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+  <div style="display:grid;grid-template-columns:1fr 420px;gap:52px;align-items:start;">
     <div>
       <div class="section-badge" style="margin-bottom:18px;"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 010 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>Get In Touch</div>
       <h2 class="section-title">Let's Talk</h2>
@@ -1124,7 +1132,7 @@ def build_book():
     content += f"""
 <div class="section-outer">
 <div class="section-box">
-  <div style="display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:start;">
+  <div style="display:grid;grid-template-columns:1fr 300px;gap:52px;align-items:start;">
     <div>
       <h2 class="section-title" style="margin-bottom:8px;">Schedule Your Repair</h2>
       <p style="font-size:15px;color:#6b7280;margin:0 0 32px;line-height:1.7;">Fill out the form below and we'll reach out to confirm your appointment time. Same-day and next-day scheduling available.</p>
@@ -1609,29 +1617,33 @@ def build_service_page(slug, title, meta_title, meta_desc, h1, hero_p, badge,
     content += inner_hero(badge, h1, hero_p, hero_btns())
     content += breadcrumb([("Home","/Prime-Clovis/"),("Services","/Prime-Clovis/services/"),(title,"")])
     content += f"""
-<div class="content-wrap">
-  <div class="prose">
-    <h2>Common {title} Problems We Fix</h2>
-    <div class="problems-grid">"""
+<div class="section-outer">
+<div class="section-box">
+  <div class="content-wrap">
+    <div class="prose">
+      <h2>Common {title} Problems We Fix</h2>
+      <div class="problems-grid">"""
     for p in problems:
         content += f"""
-      <div class="problem-item">
-        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        <span>{p}</span>
-      </div>"""
+        <div class="problem-item">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>{p}</span>
+        </div>"""
     content += f"""
+      </div>
+      <h2>How We Work</h2>
+      <p>{intro_p}</p>
+      <h2>Our Repair Process</h2>
+      <p>{process_p}</p>
+      <div class="callout"><p>💡 We provide a clear, upfront quote before starting any work. You only pay if you approve the repair.</p></div>
+      <h2>Brands We Service</h2>
+      <p>We repair all major appliance brands including Whirlpool, GE, Samsung, LG, Maytag, Bosch, KitchenAid, Frigidaire, Sub-Zero, Viking, Electrolux, Kenmore, Amana, and more. If you don't see your brand listed, call us — chances are we service it.</p>
+      <h2>Service Area</h2>
+      <p>We provide fast, reliable {title.lower()} throughout <a href="/Prime-Clovis/fresno-appliance-repair/">Fresno</a>, <a href="/Prime-Clovis/clovis-appliance-repair/">Clovis</a>, <a href="/Prime-Clovis/madera-appliance-repair/">Madera</a>, <a href="/Prime-Clovis/sanger-appliance-repair/">Sanger</a>, <a href="/Prime-Clovis/fowler-appliance-repair/">Fowler</a>, and all surrounding areas in the Central Valley.</p>
     </div>
-    <h2>How We Work</h2>
-    <p>{intro_p}</p>
-    <h2>Our Repair Process</h2>
-    <p>{process_p}</p>
-    <div class="callout"><p>💡 We provide a clear, upfront quote before starting any work. You only pay if you approve the repair.</p></div>
-    <h2>Brands We Service</h2>
-    <p>We repair all major appliance brands including Whirlpool, GE, Samsung, LG, Maytag, Bosch, KitchenAid, Frigidaire, Sub-Zero, Viking, Electrolux, Kenmore, Amana, and more. If you don't see your brand listed, call us — chances are we service it.</p>
-    <h2>Service Area</h2>
-    <p>We provide fast, reliable {title.lower()} throughout <a href="/Prime-Clovis/fresno-appliance-repair/">Fresno</a>, <a href="/Prime-Clovis/clovis-appliance-repair/">Clovis</a>, <a href="/Prime-Clovis/madera-appliance-repair/">Madera</a>, <a href="/Prime-Clovis/sanger-appliance-repair/">Sanger</a>, <a href="/Prime-Clovis/fowler-appliance-repair/">Fowler</a>, and all surrounding areas in the Central Valley.</p>
+    {sidebar_services()}
   </div>
-  {sidebar_services()}
+</div>
 </div>"""
     content += cta_banner()
     content += booking_section()
@@ -1779,34 +1791,38 @@ def build_location_page(slug, city, meta_title, meta_desc, h1, hero_p, canonical
     )
     content += breadcrumb([("Home","/Prime-Clovis/"),("Service Areas","#"),(city,"")])
     content += f"""
-<div class="content-wrap">
-  <div class="prose">
-    <h2>Appliance Repair Services in {city}</h2>
-    <p>Finding trustworthy appliance repair in {city} shouldn't be complicated. Our goal is to make the process simple — from the first call to the completed repair. We work directly at your home, arrive with the tools and parts needed for most common issues, and focus on identifying the real cause of the problem.</p>
-    <h2>Appliances We Repair</h2>
-    <div class="problems-grid">
-      <div class="problem-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Refrigerators &amp; Freezers</span></div>
-      <div class="problem-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Washers &amp; Dryers</span></div>
-      <div class="problem-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Ovens, Ranges &amp; Stoves</span></div>
-      <div class="problem-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Dishwashers</span></div>
-      <div class="problem-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Microwaves</span></div>
-      <div class="problem-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Wine Coolers &amp; Ice Makers</span></div>
-      <div class="problem-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Garbage Disposals</span></div>
-      <div class="problem-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>All Major Brands</span></div>
+<div class="section-outer">
+<div class="section-box">
+  <div class="content-wrap">
+    <div class="prose">
+      <h2>Appliance Repair Services in {city}</h2>
+      <p>Finding trustworthy appliance repair in {city} shouldn't be complicated. Our goal is to make the process simple — from the first call to the completed repair. We work directly at your home, arrive with the tools and parts needed for most common issues, and focus on identifying the real cause of the problem.</p>
+      <h2>Appliances We Repair</h2>
+      <div class="problems-grid">
+        <div class="problem-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Refrigerators &amp; Freezers</span></div>
+        <div class="problem-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Washers &amp; Dryers</span></div>
+        <div class="problem-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Ovens, Ranges &amp; Stoves</span></div>
+        <div class="problem-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Dishwashers</span></div>
+        <div class="problem-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Microwaves</span></div>
+        <div class="problem-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Wine Coolers &amp; Ice Makers</span></div>
+        <div class="problem-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Garbage Disposals</span></div>
+        <div class="problem-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>All Major Brands</span></div>
+      </div>
+      <h2>Why Choose Us in {city}</h2>
+      <ul>
+        <li><strong>Experienced technicians</strong> — trained on all major appliance brands and models</li>
+        <li><strong>Honest diagnostics</strong> — no unnecessary repairs, no pressure tactics</li>
+        <li><strong>Warranty on parts and labor</strong> — every repair is backed</li>
+        <li><strong>Fast scheduling</strong> — same-day or next-day service available</li>
+        <li><strong>Service at your home</strong> — we come to you, no need to haul your appliance anywhere</li>
+      </ul>
+      {extra_section}
+      <h2>Schedule Your Service in {city}</h2>
+      <p>Call today or book online for fast, reliable appliance repair in {city}. Same-day or next-day appointments available throughout the area.</p>
     </div>
-    <h2>Why Choose Us in {city}</h2>
-    <ul>
-      <li><strong>Experienced technicians</strong> — trained on all major appliance brands and models</li>
-      <li><strong>Honest diagnostics</strong> — no unnecessary repairs, no pressure tactics</li>
-      <li><strong>Warranty on parts and labor</strong> — every repair is backed</li>
-      <li><strong>Fast scheduling</strong> — same-day or next-day service available</li>
-      <li><strong>Service at your home</strong> — we come to you, no need to haul your appliance anywhere</li>
-    </ul>
-    {extra_section}
-    <h2>Schedule Your Service in {city}</h2>
-    <p>Call today or book online for fast, reliable appliance repair in {city}. Same-day or next-day appointments available throughout the area.</p>
+    {sidebar_services()}
   </div>
-  {sidebar_services()}
+</div>
 </div>"""
     content += """
 <div class="section-outer">
@@ -1939,20 +1955,24 @@ def build_brand_page(slug, brand, meta_title, meta_desc, h1, hero_p, canonical, 
     content += inner_hero(f"{brand} Repair", h1, hero_p, hero_btns())
     content += breadcrumb([("Home","/Prime-Clovis/"),("Services","/Prime-Clovis/services/"),(f"{brand} Repair","")])
     content += f"""
-<div class="content-wrap">
-  <div class="prose">
-    {specifics_html}
-    <h2>Why Choose Our Service</h2>
-    <ul>
-      <li><strong>Experienced technicians</strong> — trained on all major brands including {brand}</li>
-      <li><strong>Honest diagnostics</strong> — no unnecessary repairs</li>
-      <li><strong>Warranty on parts and labor</strong></li>
-      <li><strong>Fast scheduling</strong> — same-day or next-day</li>
-    </ul>
-    <h2>Service Area</h2>
-    <p>We proudly service Fresno, Clovis, Madera, Friant, and surrounding areas. We keep everything clear, straightforward, and hassle-free.</p>
+<div class="section-outer">
+<div class="section-box">
+  <div class="content-wrap">
+    <div class="prose">
+      {specifics_html}
+      <h2>Why Choose Our Service</h2>
+      <ul>
+        <li><strong>Experienced technicians</strong> — trained on all major brands including {brand}</li>
+        <li><strong>Honest diagnostics</strong> — no unnecessary repairs</li>
+        <li><strong>Warranty on parts and labor</strong></li>
+        <li><strong>Fast scheduling</strong> — same-day or next-day</li>
+      </ul>
+      <h2>Service Area</h2>
+      <p>We proudly service Fresno, Clovis, Madera, Friant, and surrounding areas. We keep everything clear, straightforward, and hassle-free.</p>
+    </div>
+    {sidebar_services()}
   </div>
-  {sidebar_services()}
+</div>
 </div>"""
     content += cta_banner()
     content += booking_section()
@@ -2005,18 +2025,22 @@ def build_privacy():
                           "How we collect, use, and protect your information.", trust=False)
     content += breadcrumb([("Home","/Prime-Clovis/"),("Privacy Policy","")])
     content += f"""
-<div style="max-width:800px;margin:0 auto;padding:64px 32px;">
-  <p style="font-size:13px;color:#9ca3af;margin-bottom:32px;">Last updated: January 1, 2026</p>
-  <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">Information We Collect</h2>
-  <p style="font-size:15px;color:#5a6472;line-height:1.8;">We collect information you provide directly to us, such as your name, phone number, email address, and service address when you book an appointment or contact us.</p>
-  <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">How We Use Your Information</h2>
-  <p style="font-size:15px;color:#5a6472;line-height:1.8;">We use the information we collect to schedule and provide appliance repair services, communicate with you about your appointment, and improve our services.</p>
-  <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">Information Sharing</h2>
-  <p style="font-size:15px;color:#5a6472;line-height:1.8;">We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as required by law.</p>
-  <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">Cookies</h2>
-  <p style="font-size:15px;color:#5a6472;line-height:1.8;">Our website may use cookies to enhance your browsing experience. You can choose to disable cookies in your browser settings, though this may affect some functionality.</p>
-  <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">Contact Us</h2>
-  <p style="font-size:15px;color:#5a6472;line-height:1.8;">If you have questions about this Privacy Policy, please contact us at <a href="tel:{PHONE_RAW}" style="color:#445162;font-weight:700;">{PHONE}</a> or <a href="mailto:{EMAIL}" style="color:#445162;font-weight:700;">{EMAIL}</a>.</p>
+<div class="section-outer">
+<div class="section-box">
+  <div style="max-width:800px;">
+    <p style="font-size:13px;color:#9ca3af;margin-bottom:32px;">Last updated: January 1, 2026</p>
+    <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">Information We Collect</h2>
+    <p style="font-size:15px;color:#5a6472;line-height:1.8;">We collect information you provide directly to us, such as your name, phone number, email address, and service address when you book an appointment or contact us.</p>
+    <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">How We Use Your Information</h2>
+    <p style="font-size:15px;color:#5a6472;line-height:1.8;">We use the information we collect to schedule and provide appliance repair services, communicate with you about your appointment, and improve our services.</p>
+    <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">Information Sharing</h2>
+    <p style="font-size:15px;color:#5a6472;line-height:1.8;">We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as required by law.</p>
+    <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">Cookies</h2>
+    <p style="font-size:15px;color:#5a6472;line-height:1.8;">Our website may use cookies to enhance your browsing experience. You can choose to disable cookies in your browser settings, though this may affect some functionality.</p>
+    <h2 style="font-size:24px;font-weight:800;color:#2b3340;margin:32px 0 14px;">Contact Us</h2>
+    <p style="font-size:15px;color:#5a6472;line-height:1.8;">If you have questions about this Privacy Policy, please contact us at <a href="tel:{PHONE_RAW}" style="color:#445162;font-weight:700;">{PHONE}</a> or <a href="mailto:{EMAIL}" style="color:#445162;font-weight:700;">{EMAIL}</a>.</p>
+  </div>
+</div>
 </div>"""
     content += footer()
     write_page(f"{BASE}/privacy-policy/index.html", content)
