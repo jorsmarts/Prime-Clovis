@@ -12,7 +12,7 @@ Run from /home/user/webapp:
 
 import os, textwrap
 
-BASE   = "/home/user/webapp/docs"
+BASE   = "/home/user/webapp/docs_live"
 PHONE  = "(559) 765-0303"
 PHONE_RAW = "+15597650303"
 EMAIL  = "appliancerepairserviceus@gmail.com"
@@ -127,12 +127,6 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
 /* ── CONTENT + SIDEBAR LAYOUT ── */
 /* content-wrap is always wrapped in .section-outer > .section-box for consistent gutter */
 .content-wrap{width:100%;padding:0;display:grid;grid-template-columns:1fr 300px;gap:52px;align-items:start;}
-/* booking-specific two-col layout */
-.booking-layout{display:grid;grid-template-columns:1fr 300px;gap:52px;align-items:start;}
-/* booking form rows */
-.bf-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
-.bf-row-1{margin-bottom:14px;}
-.bf-form-box{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:36px;}
 .prose h2{font-size:clamp(20px,2.5vw,28px);font-weight:800;color:#2b3340;margin:36px 0 14px;line-height:1.25;}
 .prose h2:first-child{margin-top:0;}
 .prose h3{font-size:18px;font-weight:700;color:#445162;margin:28px 0 10px;}
@@ -218,7 +212,7 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
 .bf-group input:focus,.bf-group select:focus,.bf-group textarea:focus{border-color:#445162;box-shadow:0 0 0 3px rgba(68,81,98,.10);}
 .bf-full{margin-bottom:16px;}
 .bf-group textarea{resize:vertical;min-height:100px;line-height:1.6;}
-.bf-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:8px;flex-wrap:wrap;}
+.bf-foot{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:8px;}
 .bf-note{display:flex;align-items:center;gap:6px;font-size:13px;color:#6b7280;}
 .bf-note svg{width:14px;height:14px;stroke:#445162;fill:none;stroke-width:2;flex-shrink:0;}
 .bf-submit{display:inline-flex;align-items:center;gap:8px;background:#d4f000;color:#1e2432;font-size:14px;font-weight:800;padding:13px 28px;border-radius:9px;border:none;cursor:pointer;font-family:inherit;transition:background .2s,transform .2s,box-shadow .2s;}
@@ -413,15 +407,6 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
   .post-hero{padding:100px 20px 0;}
   .content-wrap{grid-template-columns:1fr;gap:24px;}
   .process-grid{grid-template-columns:1fr!important;}
-  /* booking page mobile */
-  .booking-layout{grid-template-columns:1fr!important;gap:32px;}
-  .sidebar{position:static!important;}
-  .bf-row-2{grid-template-columns:1fr!important;}
-  .bf-form-box{padding:24px 18px;}
-  .bf-foot{flex-direction:column;align-items:stretch;}
-  .bf-submit{justify-content:center;width:100%;}
-  .contact-strip{grid-template-columns:1fr!important;}
-  .bf-note{justify-content:center;}
 }
 """
 
@@ -539,25 +524,25 @@ def head(title, desc, canonical):
 def navbar(active=""):
     services_drop = """
         <ul class="drop-menu">
-          <li><a href="/Prime-Clovis/refrigerator-repair-clovis-ca/">Refrigerator Repair</a></li>
-          <li><a href="/Prime-Clovis/washer-repair-clovis-ca/">Washer Repair</a></li>
-          <li><a href="/Prime-Clovis/dryer-repair-clovis-ca/">Dryer Repair</a></li>
-          <li><a href="/Prime-Clovis/dishwasher-repair-clovis-ca/">Dishwasher Repair</a></li>
-          <li><a href="/Prime-Clovis/oven-repair-clovis-ca/">Oven &amp; Range Repair</a></li>
-          <li><a href="/Prime-Clovis/microwave-repair-clovis-ca/">Microwave Repair</a></li>
-          <li><a href="/Prime-Clovis/freezer-repair-clovis-ca/">Freezer Repair</a></li>
-          <li><a href="/Prime-Clovis/ice-maker-repair-clovis-ca/">Ice Maker Repair</a></li>
-          <li><a href="/Prime-Clovis/wine-cooler-repair-clovis-ca/">Wine Cooler Repair</a></li>
-          <li><a href="/Prime-Clovis/garbage-disposal-repair-clovis-ca/">Garbage Disposal</a></li>
+          <li><a href="/refrigerator-repair-clovis-ca/">Refrigerator Repair</a></li>
+          <li><a href="/washer-repair-clovis-ca/">Washer Repair</a></li>
+          <li><a href="/dryer-repair-clovis-ca/">Dryer Repair</a></li>
+          <li><a href="/dishwasher-repair-clovis-ca/">Dishwasher Repair</a></li>
+          <li><a href="/oven-repair-clovis-ca/">Oven &amp; Range Repair</a></li>
+          <li><a href="/microwave-repair-clovis-ca/">Microwave Repair</a></li>
+          <li><a href="/freezer-repair-clovis-ca/">Freezer Repair</a></li>
+          <li><a href="/ice-maker-repair-clovis-ca/">Ice Maker Repair</a></li>
+          <li><a href="/wine-cooler-repair-clovis-ca/">Wine Cooler Repair</a></li>
+          <li><a href="/garbage-disposal-repair-clovis-ca/">Garbage Disposal</a></li>
         </ul>"""
     areas_drop = """
         <ul class="drop-menu">
-          <li><a href="/Prime-Clovis/fresno-appliance-repair/">Fresno</a></li>
-          <li><a href="/Prime-Clovis/clovis-appliance-repair/">Clovis</a></li>
-          <li><a href="/Prime-Clovis/madera-appliance-repair/">Madera</a></li>
-          <li><a href="/Prime-Clovis/sanger-appliance-repair/">Sanger</a></li>
-          <li><a href="/Prime-Clovis/fowler-appliance-repair/">Fowler</a></li>
-          <li><a href="/Prime-Clovis/fraint-appliance-repair/">Friant</a></li>
+          <li><a href="/fresno-appliance-repair/">Fresno</a></li>
+          <li><a href="/clovis-appliance-repair/">Clovis</a></li>
+          <li><a href="/madera-appliance-repair/">Madera</a></li>
+          <li><a href="/sanger-appliance-repair/">Sanger</a></li>
+          <li><a href="/fowler-appliance-repair/">Fowler</a></li>
+          <li><a href="/fraint-appliance-repair/">Friant</a></li>
         </ul>"""
     active_home    = ' class="active"' if active=="home"    else ""
     active_svc     = ' class="active"' if active=="services" else ""
@@ -568,29 +553,29 @@ def navbar(active=""):
 <nav class="site-navbar" id="siteNavbar">
   <div class="nav-inner">
     <div class="nav-logo">
-      <a href="/Prime-Clovis/"><img src="{LOGO}" alt="Prime Appliance Repair Services" width="160" height="48"></a>
+      <a href="/"><img src="{LOGO}" alt="Prime Appliance Repair Services" width="160" height="48"></a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-menu" id="navMenu">
-      <li{active_home}><a href="/Prime-Clovis/">Home</a></li>
+      <li{active_home}><a href="/">Home</a></li>
       <li class="has-drop{' active' if active=='services' else ''}">
-        <a href="/Prime-Clovis/services/" class="has-drop-link">Services
+        <a href="/services/" class="has-drop-link">Services
           <svg class="drop-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
         </a>
         {services_drop}
       </li>
       <li class="has-drop{' active' if active=='areas' else ''}">
-        <a href="/Prime-Clovis/fresno-appliance-repair/" class="has-drop-link">Service Areas
+        <a href="/fresno-appliance-repair/" class="has-drop-link">Service Areas
           <svg class="drop-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
         </a>
         {areas_drop}
       </li>
-      <li{active_about}><a href="/Prime-Clovis/about-us/">About Us</a></li>
-      <li{active_blog}><a href="/Prime-Clovis/blog-2/">Blog</a></li>
-      <li><a href="/Prime-Clovis/contact-us/">Contact</a></li>
-      <li><a href="/Prime-Clovis/book-an-appointment/" class="nav-cta">Book Online</a></li>
+      <li{active_about}><a href="/about-us/">About Us</a></li>
+      <li{active_blog}><a href="/blog-2/">Blog</a></li>
+      <li><a href="/contact-us/">Contact</a></li>
+      <li><a href="/book-an-appointment/" class="nav-cta">Book Online</a></li>
     </ul>
   </div>
 </nav>"""
@@ -631,7 +616,7 @@ def inner_hero(badge, h1, p, btns_html="", trust=True, highlight=""):
   </div>
 </section>"""
 
-def hero_btns(primary_text="Book Online", primary_href="/Prime-Clovis/book-an-appointment/",
+def hero_btns(primary_text="Book Online", primary_href="/book-an-appointment/",
               secondary_text="Call Now", secondary_href=f"tel:{PHONE_RAW}"):
     return f"""
     <div class="inner-hero-btns">
@@ -719,7 +704,7 @@ def cta_banner():
         <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 010 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
         {PHONE}
       </a>
-      <a href="/Prime-Clovis/book-an-appointment/" class="btn-cta-secondary">
+      <a href="/book-an-appointment/" class="btn-cta-secondary">
         <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Book Appointment
       </a>
@@ -733,7 +718,7 @@ def footer():
 <div class="footer-wrap">
   <div class="footer-top">
     <div class="footer-col">
-      <a href="/Prime-Clovis/"><img class="footer-logo-img" src="{LOGO}" alt="Prime Appliance Repair Services"></a>
+      <a href="/"><img class="footer-logo-img" src="{LOGO}" alt="Prime Appliance Repair Services"></a>
       <p class="footer-desc">Reliable appliance repair backed by 15+ years of experience. Serving Fresno, Clovis, and the Central Valley with certified technicians.</p>
       <div class="footer-socials">
         <a href="https://www.facebook.com/profile.php?id=61580997082846" aria-label="Facebook">
@@ -753,26 +738,26 @@ def footer():
     <div class="footer-col">
       <h4>Quick Links</h4>
       <ul>
-        <li><a href="/Prime-Clovis/">Home</a></li>
-        <li><a href="/Prime-Clovis/about-us/">About Us</a></li>
-        <li><a href="/Prime-Clovis/services/">Services</a></li>
-        <li><a href="/Prime-Clovis/blog-2/">Blog</a></li>
-        <li><a href="/Prime-Clovis/contact-us/">Contact</a></li>
-        <li><a href="/Prime-Clovis/book-an-appointment/">Book Appointment</a></li>
-        <li><a href="/Prime-Clovis/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about-us/">About Us</a></li>
+        <li><a href="/services/">Services</a></li>
+        <li><a href="/blog-2/">Blog</a></li>
+        <li><a href="/contact-us/">Contact</a></li>
+        <li><a href="/book-an-appointment/">Book Appointment</a></li>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Appliances We Fix</h4>
       <ul>
-        <li><a href="/Prime-Clovis/refrigerator-repair-clovis-ca/">Refrigerator Repair</a></li>
-        <li><a href="/Prime-Clovis/washer-repair-clovis-ca/">Washer Repair</a></li>
-        <li><a href="/Prime-Clovis/dryer-repair-clovis-ca/">Dryer Repair</a></li>
-        <li><a href="/Prime-Clovis/dishwasher-repair-clovis-ca/">Dishwasher Repair</a></li>
-        <li><a href="/Prime-Clovis/oven-repair-clovis-ca/">Oven &amp; Range Repair</a></li>
-        <li><a href="/Prime-Clovis/microwave-repair-clovis-ca/">Microwave Repair</a></li>
-        <li><a href="/Prime-Clovis/freezer-repair-clovis-ca/">Freezer Repair</a></li>
-        <li><a href="/Prime-Clovis/ice-maker-repair-clovis-ca/">Ice Maker Repair</a></li>
+        <li><a href="/refrigerator-repair-clovis-ca/">Refrigerator Repair</a></li>
+        <li><a href="/washer-repair-clovis-ca/">Washer Repair</a></li>
+        <li><a href="/dryer-repair-clovis-ca/">Dryer Repair</a></li>
+        <li><a href="/dishwasher-repair-clovis-ca/">Dishwasher Repair</a></li>
+        <li><a href="/oven-repair-clovis-ca/">Oven &amp; Range Repair</a></li>
+        <li><a href="/microwave-repair-clovis-ca/">Microwave Repair</a></li>
+        <li><a href="/freezer-repair-clovis-ca/">Freezer Repair</a></li>
+        <li><a href="/ice-maker-repair-clovis-ca/">Ice Maker Repair</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -788,7 +773,7 @@ def footer():
   <div class="footer-bottom">
     <p>&copy; 2026 Prime Appliance Repair Services. All rights reserved.</p>
     <div class="footer-bottom-links">
-      <a href="/Prime-Clovis/privacy-policy/">Privacy Policy</a>
+      <a href="/privacy-policy/">Privacy Policy</a>
     </div>
   </div>
 </div>
@@ -802,34 +787,34 @@ def sidebar_services():
   <div class="sidebar-cta">
     <h4>Schedule Service Today</h4>
     <p>Same-day &amp; next-day appointments available.</p>
-    <a href="/Prime-Clovis/book-an-appointment/" class="sidebar-btn-primary">Book Online</a>
+    <a href="/book-an-appointment/" class="sidebar-btn-primary">Book Online</a>
     <a href="tel:+15597650303" class="sidebar-btn-secondary">&#x260E; (559) 765-0303</a>
   </div>
   <div class="sidebar-links">
     <h5>Our Services</h5>
     <ul>
-      <li><a href="/Prime-Clovis/refrigerator-repair-clovis-ca/">Refrigerator Repair</a></li>
-      <li><a href="/Prime-Clovis/freezer-repair-clovis-ca/">Freezer Repair</a></li>
-      <li><a href="/Prime-Clovis/washer-repair-clovis-ca/">Washer Repair</a></li>
-      <li><a href="/Prime-Clovis/dryer-repair-clovis-ca/">Dryer Repair</a></li>
-      <li><a href="/Prime-Clovis/dishwasher-repair-clovis-ca/">Dishwasher Repair</a></li>
-      <li><a href="/Prime-Clovis/oven-repair-clovis-ca/">Oven &amp; Range Repair</a></li>
-      <li><a href="/Prime-Clovis/stove-repair-clovis-ca/">Stove Repair</a></li>
-      <li><a href="/Prime-Clovis/microwave-repair-clovis-ca/">Microwave Repair</a></li>
-      <li><a href="/Prime-Clovis/wine-cooler-repair-clovis-ca/">Wine Cooler Repair</a></li>
-      <li><a href="/Prime-Clovis/ice-maker-repair-clovis-ca/">Ice Maker Repair</a></li>
-      <li><a href="/Prime-Clovis/garbage-disposal-repair-clovis-ca/">Garbage Disposal</a></li>
+      <li><a href="/refrigerator-repair-clovis-ca/">Refrigerator Repair</a></li>
+      <li><a href="/freezer-repair-clovis-ca/">Freezer Repair</a></li>
+      <li><a href="/washer-repair-clovis-ca/">Washer Repair</a></li>
+      <li><a href="/dryer-repair-clovis-ca/">Dryer Repair</a></li>
+      <li><a href="/dishwasher-repair-clovis-ca/">Dishwasher Repair</a></li>
+      <li><a href="/oven-repair-clovis-ca/">Oven &amp; Range Repair</a></li>
+      <li><a href="/stove-repair-clovis-ca/">Stove Repair</a></li>
+      <li><a href="/microwave-repair-clovis-ca/">Microwave Repair</a></li>
+      <li><a href="/wine-cooler-repair-clovis-ca/">Wine Cooler Repair</a></li>
+      <li><a href="/ice-maker-repair-clovis-ca/">Ice Maker Repair</a></li>
+      <li><a href="/garbage-disposal-repair-clovis-ca/">Garbage Disposal</a></li>
     </ul>
   </div>
   <div class="sidebar-links">
     <h5>Service Areas</h5>
     <ul>
-      <li><a href="/Prime-Clovis/fresno-appliance-repair/">Fresno</a></li>
-      <li><a href="/Prime-Clovis/clovis-appliance-repair/">Clovis</a></li>
-      <li><a href="/Prime-Clovis/madera-appliance-repair/">Madera</a></li>
-      <li><a href="/Prime-Clovis/sanger-appliance-repair/">Sanger</a></li>
-      <li><a href="/Prime-Clovis/fowler-appliance-repair/">Fowler</a></li>
-      <li><a href="/Prime-Clovis/fraint-appliance-repair/">Friant</a></li>
+      <li><a href="/fresno-appliance-repair/">Fresno</a></li>
+      <li><a href="/clovis-appliance-repair/">Clovis</a></li>
+      <li><a href="/madera-appliance-repair/">Madera</a></li>
+      <li><a href="/sanger-appliance-repair/">Sanger</a></li>
+      <li><a href="/fowler-appliance-repair/">Fowler</a></li>
+      <li><a href="/fraint-appliance-repair/">Friant</a></li>
     </ul>
   </div>
 </div>"""
@@ -875,9 +860,9 @@ def build_about():
         "About Us",
         "Appliance Repair <span class='hi'>Built on Trust</span>",
         "We've been working in appliance repair since 2009, starting small and growing steadily by doing one thing well: honest work, done right.",
-        hero_btns("Book Online", "/Prime-Clovis/book-an-appointment/", f"Call {PHONE}", f"tel:{PHONE_RAW}")
+        hero_btns("Book Online", "/book-an-appointment/", f"Call {PHONE}", f"tel:{PHONE_RAW}")
     )
-    content += breadcrumb([("Home","/Prime-Clovis/"),("About Us","")])
+    content += breadcrumb([("Home","/"),("About Us","")])
     content += """
 <div class="section-outer">
 <div class="section-box">
@@ -963,7 +948,7 @@ def build_services():
         "We repair all major household appliances — fast, reliable service with warranty on parts and labor. Same-day appointments available throughout Fresno and Clovis.",
         hero_btns()
     )
-    content += breadcrumb([("Home","/Prime-Clovis/"),("Services","")])
+    content += breadcrumb([("Home","/"),("Services","")])
 
     services_data = [
         ("🧊", "Refrigerator Repair", "refrigerator-repair-clovis-ca",
@@ -1021,7 +1006,7 @@ def build_services():
           <h3 style="font-size:20px;font-weight:800;color:#2b3340;margin:0 0 8px;">{name}</h3>
           <p style="font-size:14px;color:#6b7280;margin:0 0 16px;">{tagline}</p>
           <ul style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px 20px;list-style:none;padding:0;margin:0 0 20px;">{issues_html}</ul>
-          <a href="/Prime-Clovis/{slug}/" style="display:inline-flex;align-items:center;gap:6px;background:#2b3340;color:#fff;font-size:14px;font-weight:700;padding:10px 20px;border-radius:8px;text-decoration:none;transition:background .2s;">Learn More →</a>
+          <a href="/{slug}/" style="display:inline-flex;align-items:center;gap:6px;background:#2b3340;color:#fff;font-size:14px;font-weight:700;padding:10px 20px;border-radius:8px;text-decoration:none;transition:background .2s;">Learn More →</a>
         </div>
       </div>
     </div>"""
@@ -1058,9 +1043,9 @@ def build_contact():
         "Contact Us",
         "We're Ready to <span class='hi'>Help You Today</span>",
         "Where broken appliances meet their match. Reach out by phone, email, or WhatsApp — we respond fast.",
-        hero_btns(f"Call {PHONE}", f"tel:{PHONE_RAW}", "Book Online", "/Prime-Clovis/book-an-appointment/")
+        hero_btns(f"Call {PHONE}", f"tel:{PHONE_RAW}", "Book Online", "/book-an-appointment/")
     )
-    content += breadcrumb([("Home","/Prime-Clovis/"),("Contact Us","")])
+    content += breadcrumb([("Home","/"),("Contact Us","")])
     content += f"""
 <div class="section-outer">
 <div class="section-box">
@@ -1150,7 +1135,7 @@ def build_book():
         "Quick and easy — fill in your details and our team will contact you as soon as possible to confirm your appointment time.",
         trust=False
     )
-    content += breadcrumb([("Home","/Prime-Clovis/"),("Book an Appointment","")])
+    content += breadcrumb([("Home","/"),("Book an Appointment","")])
     content += f"""
 <div class="section-outer">
 <div class="section-box">
@@ -1315,13 +1300,13 @@ def build_blog():
         "Practical advice to help you keep your appliances running longer, catch problems early, and know when to call a pro.",
         trust=False
     )
-    content += breadcrumb([("Home","/Prime-Clovis/"),("Blog","")])
+    content += breadcrumb([("Home","/"),("Blog","")])
 
     cat_pills = [
-        ("All Posts", "/Prime-Clovis/blog-2/", True),
-        ("Appliance Problems & Fixes", "/Prime-Clovis/category/appliance-problems-fixes/", False),
-        ("Repair Cost Guides", "/Prime-Clovis/category/repair-cost-guides/", False),
-        ("Maintenance & Tips", "/Prime-Clovis/category/maintenance-insider-tips/", False),
+        ("All Posts", "/blog-2/", True),
+        ("Appliance Problems & Fixes", "/category/appliance-problems-fixes/", False),
+        ("Repair Cost Guides", "/category/repair-cost-guides/", False),
+        ("Maintenance & Tips", "/category/maintenance-insider-tips/", False),
     ]
     pills_html = ""
     for label, href, active in cat_pills:
@@ -1338,7 +1323,7 @@ def build_blog():
 
     for post in BLOG_POSTS:
         content += f"""
-    <a href="/Prime-Clovis/{post['slug']}/" class="blog-card">
+    <a href="/{post['slug']}/" class="blog-card">
       <div class="blog-thumb">
         <img src="{post['img']}" alt="{post['title']}" loading="lazy">
         <span class="blog-cat-pill">{post['cat']}</span>
@@ -1381,14 +1366,14 @@ def build_categories():
                        desc, f"https://appliancerepairclovis.com/category/{slug}/")
         content += navbar("blog")
         content += inner_hero("Blog Category", f"<span class='hi'>{title}</span>", desc, trust=False)
-        content += breadcrumb([("Home","/Prime-Clovis/"),("Blog","/Prime-Clovis/blog-2/"),(title,"")])
+        content += breadcrumb([("Home","/"),("Blog","/blog-2/"),(title,"")])
         content += f"""
 <div class="section-outer">
 <div class="section-box">
   <div class="blog-grid">"""
         for post in all_posts:
             content += f"""
-    <a href="/Prime-Clovis/{post['slug']}/" class="blog-card">
+    <a href="/{post['slug']}/" class="blog-card">
       <div class="blog-thumb">
         <img src="{post['img']}" alt="{post['title']}" loading="lazy">
         <span class="blog-cat-pill">{post['cat']}</span>
@@ -1423,9 +1408,9 @@ def build_blog_post_shell(post, body_html):
 <section class="post-hero">
   <div class="post-hero-inner">
     <div class="breadcrumb-inner" style="margin-bottom:16px;padding:0;">
-      <a href="/Prime-Clovis/" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none;">Home</a>
+      <a href="/" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none;">Home</a>
       <span class="sep" style="color:rgba(255,255,255,.3);">›</span>
-      <a href="/Prime-Clovis/blog-2/" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none;">Blog</a>
+      <a href="/blog-2/" style="font-size:12px;color:rgba(255,255,255,.5);text-decoration:none;">Blog</a>
       <span class="sep" style="color:rgba(255,255,255,.3);">›</span>
       <span style="font-size:12px;color:rgba(255,255,255,.7);">{post['title']}</span>
     </div>
@@ -1448,25 +1433,25 @@ def build_blog_post_shell(post, body_html):
     <div class="sidebar-cta">
       <h4>Need a Repair?</h4>
       <p>Our certified technicians are ready to help — same-day service available.</p>
-      <a href="/Prime-Clovis/book-an-appointment/" class="sidebar-btn-primary">Book Appointment</a>
+      <a href="/book-an-appointment/" class="sidebar-btn-primary">Book Appointment</a>
       <a href="tel:{PHONE_RAW}" class="sidebar-btn-secondary">&#x260E; {PHONE}</a>
     </div>
     <div class="sidebar-links">
       <h5>Our Services</h5>
       <ul>
-        <li><a href="/Prime-Clovis/refrigerator-repair-clovis-ca/">Refrigerator Repair</a></li>
-        <li><a href="/Prime-Clovis/washer-repair-clovis-ca/">Washer Repair</a></li>
-        <li><a href="/Prime-Clovis/dryer-repair-clovis-ca/">Dryer Repair</a></li>
-        <li><a href="/Prime-Clovis/dishwasher-repair-clovis-ca/">Dishwasher Repair</a></li>
-        <li><a href="/Prime-Clovis/oven-repair-clovis-ca/">Oven &amp; Range Repair</a></li>
-        <li><a href="/Prime-Clovis/microwave-repair-clovis-ca/">Microwave Repair</a></li>
+        <li><a href="/refrigerator-repair-clovis-ca/">Refrigerator Repair</a></li>
+        <li><a href="/washer-repair-clovis-ca/">Washer Repair</a></li>
+        <li><a href="/dryer-repair-clovis-ca/">Dryer Repair</a></li>
+        <li><a href="/dishwasher-repair-clovis-ca/">Dishwasher Repair</a></li>
+        <li><a href="/oven-repair-clovis-ca/">Oven &amp; Range Repair</a></li>
+        <li><a href="/microwave-repair-clovis-ca/">Microwave Repair</a></li>
       </ul>
     </div>
     <div class="sidebar-links">
       <h5>Related Articles</h5>
       <ul>"""
     for op in other_posts:
-        content += f'<li><a href="/Prime-Clovis/{op["slug"]}/">{op["title"]}</a></li>'
+        content += f'<li><a href="/{op["slug"]}/">{op["title"]}</a></li>'
     content += f"""
       </ul>
     </div>
@@ -1637,7 +1622,7 @@ def build_service_page(slug, title, meta_title, meta_desc, h1, hero_p, badge,
     content = head(meta_title, meta_desc, canonical)
     content += navbar("services")
     content += inner_hero(badge, h1, hero_p, hero_btns())
-    content += breadcrumb([("Home","/Prime-Clovis/"),("Services","/Prime-Clovis/services/"),(title,"")])
+    content += breadcrumb([("Home","/"),("Services","/services/"),(title,"")])
     content += f"""
 <div class="section-outer">
 <div class="section-box">
@@ -1661,7 +1646,7 @@ def build_service_page(slug, title, meta_title, meta_desc, h1, hero_p, badge,
       <h2>Brands We Service</h2>
       <p>We repair all major appliance brands including Whirlpool, GE, Samsung, LG, Maytag, Bosch, KitchenAid, Frigidaire, Sub-Zero, Viking, Electrolux, Kenmore, Amana, and more. If you don't see your brand listed, call us — chances are we service it.</p>
       <h2>Service Area</h2>
-      <p>We provide fast, reliable {title.lower()} throughout <a href="/Prime-Clovis/fresno-appliance-repair/">Fresno</a>, <a href="/Prime-Clovis/clovis-appliance-repair/">Clovis</a>, <a href="/Prime-Clovis/madera-appliance-repair/">Madera</a>, <a href="/Prime-Clovis/sanger-appliance-repair/">Sanger</a>, <a href="/Prime-Clovis/fowler-appliance-repair/">Fowler</a>, and all surrounding areas in the Central Valley.</p>
+      <p>We provide fast, reliable {title.lower()} throughout <a href="/fresno-appliance-repair/">Fresno</a>, <a href="/clovis-appliance-repair/">Clovis</a>, <a href="/madera-appliance-repair/">Madera</a>, <a href="/sanger-appliance-repair/">Sanger</a>, <a href="/fowler-appliance-repair/">Fowler</a>, and all surrounding areas in the Central Valley.</p>
     </div>
     {sidebar_services()}
   </div>
@@ -1811,7 +1796,7 @@ def build_location_page(slug, city, meta_title, meta_desc, h1, hero_p, canonical
         hero_p,
         hero_btns()
     )
-    content += breadcrumb([("Home","/Prime-Clovis/"),("Service Areas","#"),(city,"")])
+    content += breadcrumb([("Home","/"),("Service Areas","#"),(city,"")])
     content += f"""
 <div class="section-outer">
 <div class="section-box">
@@ -1975,7 +1960,7 @@ def build_brand_page(slug, brand, meta_title, meta_desc, h1, hero_p, canonical, 
     content = head(meta_title, meta_desc, canonical)
     content += navbar("services")
     content += inner_hero(f"{brand} Repair", h1, hero_p, hero_btns())
-    content += breadcrumb([("Home","/Prime-Clovis/"),("Services","/Prime-Clovis/services/"),(f"{brand} Repair","")])
+    content += breadcrumb([("Home","/"),("Services","/services/"),(f"{brand} Repair","")])
     content += f"""
 <div class="section-outer">
 <div class="section-box">
@@ -2045,7 +2030,7 @@ def build_privacy():
     content += navbar()
     content += inner_hero("Legal", "Privacy <span class='hi'>Policy</span>",
                           "How we collect, use, and protect your information.", trust=False)
-    content += breadcrumb([("Home","/Prime-Clovis/"),("Privacy Policy","")])
+    content += breadcrumb([("Home","/"),("Privacy Policy","")])
     content += f"""
 <div class="section-outer">
 <div class="section-box">
@@ -2081,9 +2066,9 @@ def build_404():
     <h1 style="font-size:32px;font-weight:900;color:#fff;margin:0 0 16px;">Page Not Found</h1>
     <p style="font-size:16px;color:rgba(255,255,255,.70);line-height:1.7;margin:0 0 36px;">The page you're looking for doesn't exist or may have moved. Let's get you back on track.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-      <a href="/Prime-Clovis/" style="display:inline-flex;align-items:center;gap:8px;background:#d4f000;color:#1e2432;font-size:15px;font-weight:800;padding:14px 26px;border-radius:9px;text-decoration:none;">Go Home</a>
-      <a href="/Prime-Clovis/services/" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);color:#fff;font-size:15px;font-weight:700;padding:14px 26px;border-radius:9px;text-decoration:none;border:1.5px solid rgba(255,255,255,.3);">Our Services</a>
-      <a href="/Prime-Clovis/book-an-appointment/" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);color:#fff;font-size:15px;font-weight:700;padding:14px 26px;border-radius:9px;text-decoration:none;border:1.5px solid rgba(255,255,255,.3);">Book Repair</a>
+      <a href="/" style="display:inline-flex;align-items:center;gap:8px;background:#d4f000;color:#1e2432;font-size:15px;font-weight:800;padding:14px 26px;border-radius:9px;text-decoration:none;">Go Home</a>
+      <a href="/services/" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);color:#fff;font-size:15px;font-weight:700;padding:14px 26px;border-radius:9px;text-decoration:none;border:1.5px solid rgba(255,255,255,.3);">Our Services</a>
+      <a href="/book-an-appointment/" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);color:#fff;font-size:15px;font-weight:700;padding:14px 26px;border-radius:9px;text-decoration:none;border:1.5px solid rgba(255,255,255,.3);">Book Repair</a>
     </div>
     <p style="margin-top:32px;font-size:14px;color:rgba(255,255,255,.5);">Need help? Call us at <a href="tel:{PHONE_RAW}" style="color:#d4f000;font-weight:700;">{PHONE}</a></p>
   </div>
