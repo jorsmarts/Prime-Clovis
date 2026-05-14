@@ -473,20 +473,48 @@ SHARED_JS = """
     });
   });
 
-  // Booking form
+  // Booking form – real submission to PHP handler
   var form = document.getElementById('bookingForm');
   if(form){
     form.addEventListener('submit',function(e){
       e.preventDefault();
       var msg = document.getElementById('formMsg');
-      if(msg){
-        msg.className='form-msg success';
-        msg.textContent='✅ Thank you! We received your request and will contact you shortly.';
-        msg.style.display='block';
-        form.reset();
-        msg.scrollIntoView({behavior:'smooth',block:'center'});
-        setTimeout(function(){ msg.style.display='none'; },9000);
-      }
+      var btn = form.querySelector('.bf-submit');
+      var origTxt = btn ? btn.innerHTML : '';
+      if(btn){ btn.disabled=true; btn.innerHTML='<svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:#1e2432;fill:none;stroke-width:2.5;animation:spin 1s linear infinite"><path d="M12 2a10 10 0 0 1 10 10"/></svg> Sending\u2026'; }
+      var data = new FormData(form);
+      fetch('/form-handler.php?t='+Date.now(),{method:'POST',body:data})
+        .then(function(r){return r.json();})
+        .then(function(json){
+          if(json.ok){
+            if(msg){
+              msg.className='form-msg success';
+              msg.textContent='\u2705 Thank you! We received your request and will call you to confirm shortly.';
+              msg.style.display='block';
+              msg.scrollIntoView({behavior:'smooth',block:'center'});
+              setTimeout(function(){ msg.style.display='none'; },12000);
+            }
+            form.reset();
+          } else {
+            if(msg){
+              msg.className='form-msg error';
+              msg.textContent='\u26a0\ufe0f '+(json.error||'Something went wrong. Please call us at (559) 765-0303.');
+              msg.style.display='block';
+              msg.scrollIntoView({behavior:'smooth',block:'center'});
+            }
+          }
+        })
+        .catch(function(){
+          if(msg){
+            msg.className='form-msg error';
+            msg.textContent='\u26a0\ufe0f Network error. Please call us at (559) 765-0303 or try again.';
+            msg.style.display='block';
+            msg.scrollIntoView({behavior:'smooth',block:'center'});
+          }
+        })
+        .finally(function(){
+          if(btn){ btn.disabled=false; btn.innerHTML=origTxt; }
+        });
     });
     var ph = form.querySelector('[name="phone"]');
     if(ph){ ph.addEventListener('input',function(e){
