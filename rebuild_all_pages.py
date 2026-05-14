@@ -692,7 +692,7 @@ def booking_section():
       <form id="bookingForm">
         <div class="bf-honey"><label>Leave blank<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
         <div class="bf-row">
-          <div class="bf-group"><label>Full Name</label><input type="text" name="name" placeholder="John Smith" required></div>
+          <div class="bf-group"><label>Full Name</label><input type="text" name="fname" placeholder="John Smith" required></div>
           <div class="bf-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="(559) 000-0000" required></div>
           <div class="bf-group"><label>Zip Code</label><input type="text" name="zip" placeholder="93720" required></div>
           <div class="bf-group"><label>Appliance Type</label>
@@ -1139,13 +1139,14 @@ def build_contact():
         <h3 style="font-size:20px;font-weight:800;color:#2b3340;margin:0 0 6px;">Send Us a Message</h3>
         <p style="font-size:13px;color:#6b7280;margin:0 0 24px;">We'll get back to you as soon as possible.</p>
         <form id="bookingForm">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+          <div class="bf-honey"><label>Leave blank<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <div class="bf-row-2">
             <div class="bf-group"><label>First Name</label><input type="text" name="fname" placeholder="John" required></div>
             <div class="bf-group"><label>Last Name</label><input type="text" name="lname" placeholder="Smith"></div>
           </div>
-          <div class="bf-group" style="margin-bottom:14px;"><label>Phone Number</label><input type="tel" name="phone" placeholder="(559) 000-0000" required></div>
-          <div class="bf-group" style="margin-bottom:14px;"><label>Email</label><input type="email" name="email" placeholder="john@email.com"></div>
-          <div class="bf-group" style="margin-bottom:14px;"><label>Appliance Type</label>
+          <div class="bf-group bf-row-1"><label>Phone Number</label><input type="tel" name="phone" placeholder="(559) 000-0000" required></div>
+          <div class="bf-group bf-row-1"><label>Email</label><input type="email" name="email" placeholder="john@email.com"></div>
+          <div class="bf-group bf-row-1"><label>Appliance Type</label>
             <select name="appliance">
               <option value="">Select appliance...</option>
               <option>Refrigerator</option><option>Washer</option><option>Dryer</option>
@@ -1153,7 +1154,7 @@ def build_contact():
               <option>Freezer</option><option>Other</option>
             </select>
           </div>
-          <div class="bf-group" style="margin-bottom:14px;"><label>Describe the Issue</label><textarea name="issue" placeholder="Tell us what's happening with your appliance..." required></textarea></div>
+          <div class="bf-group bf-row-1"><label>Describe the Issue</label><textarea name="issue" placeholder="Tell us what's happening with your appliance..." required></textarea></div>
           <button type="submit" class="bf-submit" style="width:100%;justify-content:center;">
             <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             Send Message
@@ -1186,22 +1187,23 @@ def build_book():
     content += f"""
 <div class="section-outer">
 <div class="section-box">
-  <div style="display:grid;grid-template-columns:1fr 300px;gap:52px;align-items:start;">
+  <div class="booking-layout">
     <div>
       <h2 class="section-title" style="margin-bottom:8px;">Schedule Your Repair</h2>
       <p style="font-size:15px;color:#6b7280;margin:0 0 32px;line-height:1.7;">Fill out the form below and we'll reach out to confirm your appointment time. Same-day and next-day scheduling available.</p>
-      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:36px;">
+      <div class="bf-form-box">
         <form id="bookingForm">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+          <div class="bf-honey"><label>Leave blank<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <div class="bf-row-2">
             <div class="bf-group"><label>First Name *</label><input type="text" name="fname" placeholder="John" required></div>
             <div class="bf-group"><label>Last Name *</label><input type="text" name="lname" placeholder="Smith" required></div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+          <div class="bf-row-2">
             <div class="bf-group"><label>Phone Number *</label><input type="tel" name="phone" placeholder="(559) 000-0000" required></div>
             <div class="bf-group"><label>Email Address</label><input type="email" name="email" placeholder="john@email.com"></div>
           </div>
-          <div class="bf-group" style="margin-bottom:14px;"><label>Service Address *</label><input type="text" name="address" placeholder="123 Main St, Clovis, CA" required></div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+          <div class="bf-group bf-row-1"><label>Service Address *</label><input type="text" name="address" placeholder="123 Main St, Clovis, CA" required></div>
+          <div class="bf-row-2">
             <div class="bf-group"><label>Appliance Type *</label>
               <select name="appliance" required>
                 <option value="">Select appliance...</option>
@@ -1213,7 +1215,7 @@ def build_book():
             </div>
             <div class="bf-group"><label>Appliance Brand</label><input type="text" name="brand" placeholder="e.g. Samsung, Whirlpool, LG..."></div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+          <div class="bf-row-2">
             <div class="bf-group"><label>Preferred Date</label><input type="date" name="date"></div>
             <div class="bf-group"><label>Preferred Time</label>
               <select name="time">
@@ -1224,7 +1226,7 @@ def build_book():
               </select>
             </div>
           </div>
-          <div class="bf-group" style="margin-bottom:20px;"><label>Describe the Problem *</label><textarea name="issue" placeholder="Tell us what's happening with your appliance..." required></textarea></div>
+          <div class="bf-group bf-row-1"><label>Describe the Problem *</label><textarea name="issue" placeholder="Tell us what's happening with your appliance..." required></textarea></div>
           <button type="submit" class="bf-submit" style="width:100%;justify-content:center;font-size:15px;padding:15px;">
             <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             Book My Appointment
