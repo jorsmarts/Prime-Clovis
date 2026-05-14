@@ -501,7 +501,7 @@ SHARED_JS = """
       var origTxt = btn ? btn.innerHTML : '';
       if(btn){ btn.disabled=true; btn.innerHTML='<svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:#1e2432;fill:none;stroke-width:2.5;animation:spin 1s linear infinite"><path d="M12 2a10 10 0 0 1 10 10"/></svg> Sending…'; }
       var data = new FormData(form);
-      fetch('/form-handler.php',{method:'POST',body:data})
+      fetch('/form-handler.php?t='+Date.now(),{method:'POST',body:data})
         .then(function(r){return r.json();})
         .then(function(json){
           if(json.ok){
