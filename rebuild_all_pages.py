@@ -908,7 +908,7 @@ def build_about():
   </div>
   <div class="process-grid">"""
     steps = [
-        ("01","Free Diagnostics","We start with a thorough inspection to find the exact cause. No guesswork, no upselling."),
+        ("01","No Service Call Fee","We waive the service call fee completely when you move forward with the repair. You only pay for the work done."),
         ("02","Upfront Quote","You'll know the full cost before we touch a single part. Clear, honest, no surprises."),
         ("03","Quality Repair","We use OEM and manufacturer-approved parts and complete the job right the first time."),
         ("04","Warranty Included","Every repair comes with a warranty on both parts and labor for your peace of mind."),
@@ -1196,7 +1196,7 @@ def build_book():
           <li><a href="#">1. We review your request</a></li>
           <li><a href="#">2. We call to confirm the time</a></li>
           <li><a href="#">3. Technician arrives at your home</a></li>
-          <li><a href="#">4. Free diagnosis &amp; quote</a></li>
+          <li><a href="#">4. Diagnosis &amp; upfront quote — service call fee waived if you repair</a></li>
           <li><a href="#">5. Repair is completed same visit</a></li>
         </ul>
       </div>
@@ -1507,7 +1507,7 @@ def build_blog_posts():
 <p>A common rule of thumb: if the repair costs more than 50% of the replacement cost, and the appliance is more than halfway through its expected lifespan, replacement is often the smarter move. But for appliances under 8–10 years old, repair almost always wins financially.</p>
 <div class="callout"><p>💡 We always give you an upfront quote before any work begins. You never pay unless you approve the repair.</p></div>
 <h2>Our Approach to Pricing</h2>
-<p>We don't charge diagnostic fees to start. When we diagnose your appliance, we give you a clear, itemized quote before touching anything. If you decide not to proceed, you're not on the hook for hidden fees. We believe transparency is the foundation of a good service relationship.</p>
+<p>We waive the service call fee when you choose to move forward with the repair. Our technician diagnoses your appliance, gives you a clear upfront quote, and if you approve the work, there's no separate visit charge on top of it. You pay for the repair — not the trip out.</p>
 """)
 
     # ── Post 3: Still Works ──
