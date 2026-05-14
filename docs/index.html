@@ -268,25 +268,23 @@ body {
 .hero-wrapper {
   position: relative;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 0 32px;
   margin: 0 !important;
+  padding: 0;
 }
 .hero-section {
   position: relative;
   width: 100%;
-  max-width: 1100px;
+  max-width: 100%;
   height: 100vh;
-  min-height: 560px;
+  min-height: 600px;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 0;
   margin: 0 !important;
 }
 .hero-slides {
   position: absolute;
   inset: 0;
-  border-radius: 20px;
+  border-radius: 0;
   overflow: hidden;
 }
 .hero-slide {
@@ -819,12 +817,14 @@ body {
 /* ============================================================
    FOOTER
 ============================================================ */
-.footer-outer { display: flex; justify-content: center; padding: 40px 32px 0; }
+.footer-outer { display: block; padding: 0; }
 .footer-wrapper {
-  max-width: 1100px; width: 100%;
-  background: #2b3340; border-radius: 20px;
-  padding: 64px 48px 32px; box-shadow: 0 4px 32px rgba(43,51,64,0.22);
+  max-width: 100%; width: 100%;
+  background: #2b3340; border-radius: 0;
+  padding: 72px 32px 36px;
+  box-shadow: none;
 }
+.footer-inner { max-width: 1100px; margin: 0 auto; }
 .footer-top {
   display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr;
   gap: 48px; padding-bottom: 48px;
@@ -878,7 +878,7 @@ body {
 ============================================================ */
 @media (max-width: 900px) {
   .navbar-menu { gap: 28px; }
-  .hero-wrapper { padding: 0 20px; }
+  .hero-wrapper { padding: 0; }
   .welcome-cards { grid-template-columns: repeat(2,1fr); }
   .brands-grid { grid-template-columns: repeat(4,1fr); }
   .articles-grid { grid-template-columns: repeat(2,1fr); }
@@ -928,6 +928,7 @@ body {
   .hero-wrapper { padding: 0 !important; }
   .hero-section { border-radius: 0; height: 100vh; min-height: 100vh; }
   .hero-slides { border-radius: 0; }
+  .footer-wrapper { padding: 56px 24px 32px; }
   .slider-arrow { display: none; }
   .hero-content { padding: 100px 24px 40px; justify-content: center; }
   .google-badge { top: 80px; right: 20px; padding: 8px 12px; }
@@ -955,7 +956,7 @@ body {
   .articles-wrapper { padding: 56px 20px; }
   .articles-grid { grid-template-columns: 1fr; }
   .footer-outer { padding: 0; }
-  .footer-wrapper { border-radius: 0; box-shadow: none; padding: 40px 20px 28px; overflow: hidden; width: 100%; max-width: 100%; }
+  .footer-wrapper { border-radius: 0; box-shadow: none; padding: 40px 20px 28px; width: 100%; max-width: 100%; }
   .footer-top { display: flex !important; flex-direction: column !important; gap: 28px; padding-bottom: 28px; margin-bottom: 20px; }
   .footer-brand { grid-column: auto; width: 100%; }
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -1446,6 +1447,7 @@ body {
 <!-- FOOTER -->
 <div class="footer-outer">
 <div class="footer-wrapper">
+<div class="footer-inner">
   <div class="footer-top">
     <div class="footer-col footer-brand">
       <a href="/Prime-Clovis/" class="footer-logo">
@@ -1519,8 +1521,9 @@ body {
       <a href="/Prime-Clovis/privacy-policy/">Privacy Policy</a>
     </div>
   </div>
-</div>
-</div>
+</div><!-- /.footer-inner -->
+</div><!-- /.footer-wrapper -->
+</div><!-- /.footer-outer -->
 
 <script>
 (function () {
