@@ -157,6 +157,7 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
 
 /* ── WHY CHOOSE US CARDS ── */
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;}
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
 .why-card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:28px 22px;transition:box-shadow .25s,border-color .25s,transform .25s;}
 .why-card:hover{box-shadow:0 8px 28px rgba(68,81,98,.12);border-color:#445162;transform:translateY(-4px);}
 .why-icon{width:46px;height:46px;border-radius:12px;background:#e8ebee;display:flex;align-items:center;justify-content:center;margin-bottom:14px;transition:background .25s;}
@@ -350,6 +351,7 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
   .post-layout{grid-template-columns:1fr;padding:48px 24px;}
   .post-sidebar{position:static;}
   .why-grid{grid-template-columns:repeat(2,1fr);}
+  .process-grid{grid-template-columns:repeat(2,1fr);}
   .contact-strip{grid-template-columns:repeat(3,1fr);}
   .blog-grid{grid-template-columns:repeat(2,1fr);}
   .bf-row{grid-template-columns:repeat(2,1fr);}
@@ -400,6 +402,7 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
   .brands-grid-5{grid-template-columns:repeat(2,1fr);}
   .post-hero{padding:100px 20px 0;}
   .content-wrap{grid-template-columns:1fr;gap:24px;}
+  .process-grid{grid-template-columns:1fr!important;}
 }
 """
 
@@ -864,7 +867,7 @@ def build_about():
     <h2 class="section-title">From a Local Shop to a Trusted Name</h2>
     <p class="section-sub">We started with a simple promise — fast, honest appliance repair — and that hasn't changed since day one.</p>
   </div>
-  <div class="content-wrap" style="grid-template-columns:1fr 280px;">
+  <div class="content-wrap">
     <div class="prose">
       <p>We've been working in appliance repair since 2009, starting small and growing steadily over the years. What began as a local service has expanded into a trusted company serving homeowners across Fresno, Clovis, Madera, and surrounding areas. Most of our growth has come from word of mouth — customers who appreciate honest service and reliable results.</p>
       <p>From day one, we've focused on a few simple things: being honest with our customers, responding quickly, doing quality work, and standing behind every job. We believe repairs should be done right the first time, with clear communication and no unnecessary upselling.</p>
@@ -903,7 +906,7 @@ def build_about():
     <h2 class="section-title">How We Work</h2>
     <p class="section-sub">A straightforward process designed around your time and your peace of mind.</p>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">"""
+  <div class="process-grid">"""
     steps = [
         ("01","Free Diagnostics","We start with a thorough inspection to find the exact cause. No guesswork, no upselling."),
         ("02","Upfront Quote","You'll know the full cost before we touch a single part. Clear, honest, no surprises."),
