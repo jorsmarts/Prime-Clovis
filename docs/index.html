@@ -936,30 +936,50 @@ body {
   .hero-content { padding: 100px 24px 40px; justify-content: center; }
   .google-badge { top: 80px; right: 20px; padding: 8px 12px; }
   .hero-trust { flex-wrap: wrap; gap: 12px; }
-  .welcome-wrapper { padding: 56px 20px; }
-  .welcome-stats { flex-wrap: wrap; gap: 24px; padding: 24px 20px; }
+  /* Welcome */
+  .welcome-wrapper { padding: 40px 16px; }
+  .welcome-top { margin-bottom: 36px; }
+  .welcome-stats { flex-wrap: wrap; gap: 0; padding: 20px 16px; border-radius: 14px; margin-bottom: 36px; }
+  .stat-item { flex: 0 0 50%; padding: 12px 0; }
+  .stat-number { font-size: 28px; }
   .stat-divider { display: none; }
-  .stat-item { flex: 0 0 40%; }
-  .welcome-bottom { flex-direction: column; align-items: stretch; gap: 20px; padding: 24px 20px; }
+  .stat-label { font-size: 11px; }
+  .welcome-cards { gap: 12px; margin-bottom: 36px; }
+  .welcome-card { padding: 20px 16px; }
+  .welcome-bottom { flex-direction: column; align-items: stretch; gap: 16px; padding: 20px 16px; }
   .welcome-cta { width: 100%; font-size: 14px; padding: 14px 16px; justify-content: center; }
+  /* Brands */
   .brands-outer, .appliances-outer, .faq2-outer { padding: 0; }
-  .brands-wrapper, .appliances-wrapper, .faq2-wrapper { border-radius: 0; box-shadow: none; padding: 48px 20px; }
-  .brands-grid { grid-template-columns: repeat(3,1fr); gap: 12px; }
-  .brand-card { padding: 20px 14px; min-height: 80px; }
-  .appliances-grid { grid-template-columns: 1fr; }
-  .faq2-question { padding: 18px 20px; }
-  .faq2-question-text { font-size: 15px; }
-  .booking-wrapper { padding: 56px 20px; }
-  .booking-form-card { padding: 24px 18px; }
+  .brands-wrapper, .appliances-wrapper, .faq2-wrapper { border-radius: 0; box-shadow: none; padding: 40px 16px; }
+  .brands-grid { grid-template-columns: repeat(3,1fr); gap: 10px; }
+  .brand-card { padding: 16px 10px; min-height: 70px; }
+  .brand-logo img { max-height: 36px; }
+  /* Appliances */
+  .appliances-grid { grid-template-columns: 1fr; gap: 10px; }
+  .appliance-card { padding: 16px 18px; gap: 14px; }
+  .appliance-image { width: 60px; height: 60px; border-radius: 10px; }
+  .appliance-info h4 { font-size: 15px; }
+  .appliance-info p { font-size: 12px; }
+  .appliance-arrow { width: 30px; height: 30px; }
+  /* FAQ */
+  .faq2-question { padding: 16px 18px; }
+  .faq2-question-text { font-size: 14px; }
+  .faq2-answer-inner { padding: 0 18px 16px; font-size: 13px; }
+  .faq2-cta { padding: 24px 16px; }
+  /* Booking */
+  .booking-wrapper { padding: 40px 16px; }
+  .booking-form-card { padding: 20px 16px; }
   .bf-row { grid-template-columns: 1fr; }
   .bf-footer { flex-direction: column; align-items: stretch; }
   .bf-submit { justify-content: center; width: 100%; }
   .bf-group input, .bf-group textarea, .bf-group select { font-size: 16px; }
+  /* Contact strip */
   .contact-strip { grid-template-columns: 1fr; gap: 10px; }
-  .cs-card { padding: 16px; gap: 12px; }
+  .cs-card { padding: 14px 16px; gap: 12px; }
   .cs-icon { width: 38px; height: 38px; }
   .cs-text strong { font-size: 13px; word-break: break-all; }
-  .articles-wrapper { padding: 56px 20px; }
+  /* Articles */
+  .articles-wrapper { padding: 40px 16px; }
   .articles-grid { grid-template-columns: 1fr; }
   .footer-outer { padding: 0; }
   .footer-wrapper { border-radius: 0; box-shadow: none; padding: 40px 20px 28px; width: 100%; max-width: 100%; }
