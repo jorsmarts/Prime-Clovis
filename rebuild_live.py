@@ -2109,9 +2109,18 @@ def build_404():
 # MAIN
 # ═══════════════════════════════════════════════════════════════
 if __name__ == "__main__":
+    import re as _re, pathlib as _pl
+
     print("\n🔨 Rebuilding all pages...\n")
 
-    print("📄 Main pages...")
+    # ── Homepage: strip /Prime-Clovis/ prefix from docs/index.html → docs_live/index.html
+    print("📄 Homepage (stripping /Prime-Clovis/ prefix)...")
+    _src = _pl.Path(__file__).parent / "docs" / "index.html"
+    _dst = _pl.Path(BASE) / "index.html"
+    _dst.write_text(_src.read_text(encoding="utf-8").replace("/Prime-Clovis/", "/"), encoding="utf-8")
+    print(f"  ✓ /index.html")
+
+    print("\n📄 Main pages...")
     build_about()
     build_services()
     build_contact()
