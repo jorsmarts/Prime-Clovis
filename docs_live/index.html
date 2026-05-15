@@ -936,9 +936,17 @@ body {
   .hero-slides { border-radius: 0; }
   .footer-wrapper { padding: 56px 24px 32px; }
   .slider-arrow { display: none; }
-  .hero-content { padding: 100px 24px 40px; justify-content: center; }
-  .google-badge { top: 80px; right: 20px; padding: 8px 12px; }
-  .hero-trust { flex-wrap: wrap; gap: 12px; }
+  .hero-content { padding: 72px 20px 32px; justify-content: flex-end; gap: 0; }
+  .google-badge { position: static; align-self: flex-end; margin-bottom: 16px; padding: 8px 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+  .google-g { width: 28px; height: 28px; }
+  .hero-eyebrow { margin-bottom: 12px; padding: 5px 12px 5px 8px; }
+  .hero-eyebrow span { font-size: 11px; }
+  .hero-title { font-size: clamp(30px, 8vw, 42px); margin-bottom: 10px; }
+  .hero-subtitle { font-size: 14px; margin-bottom: 20px; line-height: 1.55; }
+  .hero-buttons { flex-direction: column; gap: 10px; width: 100%; }
+  .btn-primary-hero, .btn-secondary-hero { width: 100%; justify-content: center; padding: 14px 20px; font-size: 15px; }
+  .hero-trust { flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .trust-item span { font-size: 12px; }
   /* Welcome */
   .welcome-wrapper { padding: 40px 16px; }
   .welcome-top { margin-bottom: 36px; }
@@ -1078,32 +1086,31 @@ body {
     <div class="hero-overlay"></div>
     <div class="slide-progress" id="slideProgress"></div>
 
-    <!-- Google Rating Badge -->
-    <a class="google-badge" href="https://www.google.com/maps/place/Prime+Appliance+Repair+Services" target="_blank">
-      <svg class="google-g" viewBox="0 0 48 48">
-        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-      </svg>
-      <div class="badge-info">
-        <span class="badge-label">Google Rating</span>
-        <div class="badge-score-row">
-          <span class="badge-score">5.0</span>
-          <div class="badge-stars">
-            <svg viewBox="0 0 20 20"><polygon fill="#FBBC05" points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
-            <svg viewBox="0 0 20 20"><polygon fill="#FBBC05" points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
-            <svg viewBox="0 0 20 20"><polygon fill="#FBBC05" points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
-            <svg viewBox="0 0 20 20"><polygon fill="#FBBC05" points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
-            <svg viewBox="0 0 20 20"><polygon fill="#FBBC05" points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
-          </div>
-          <span class="badge-count">(165)</span>
-        </div>
-      </div>
-    </a>
-
     <!-- Hero Content -->
     <div class="hero-content">
+      <!-- Google Rating Badge (desktop: absolute top-right; mobile: flows inside content) -->
+      <a class="google-badge" href="https://www.google.com/maps/place/Prime+Appliance+Repair+Services" target="_blank">
+        <svg class="google-g" viewBox="0 0 48 48">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        <div class="badge-info">
+          <span class="badge-label">Google Rating</span>
+          <div class="badge-score-row">
+            <span class="badge-score">5.0</span>
+            <div class="badge-stars">
+              <svg viewBox="0 0 20 20"><polygon fill="#FBBC05" points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+              <svg viewBox="0 0 20 20"><polygon fill="#FBBC05" points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+              <svg viewBox="0 0 20 20"><polygon fill="#FBBC05" points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+              <svg viewBox="0 0 20 20"><polygon fill="#FBBC05" points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+              <svg viewBox="0 0 20 20"><polygon fill="#FBBC05" points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg>
+            </div>
+            <span class="badge-count">(165)</span>
+          </div>
+        </div>
+      </a>
       <div class="hero-eyebrow">
         <div class="hero-eyebrow-dot"></div>
         <span>Fresno &nbsp;·&nbsp; Clovis &nbsp;·&nbsp; Madera &nbsp;·&nbsp; Sanger &nbsp;·&nbsp; Fowler &nbsp;·&nbsp; Friant</span>
