@@ -487,6 +487,11 @@ SHARED_JS = """
         .then(function(r){return r.json();})
         .then(function(json){
           if(json.ok){
+            // Also forward to Dispatch Portal
+            try {
+              var dp = new FormData(form);
+              fetch('https://molboi.com/api/submit?apiKey=sk_2be74d199c304c44ad7eddb10d1176bd',{method:'POST',body:dp}).catch(function(){});
+            } catch(ex){}
             if(msg){
               msg.className='form-msg success';
               msg.textContent='\u2705 Thank you! We received your request and will call you to confirm shortly.';
@@ -807,6 +812,14 @@ def footer():
 </div>
 </div>
 <script>{SHARED_JS}</script>
+<!-- Dispatch Portal Widget -->
+<script>
+  window.DispatchPortal = {{
+    apiKey: 'sk_2be74d199c304c44ad7eddb10d1176bd',
+    serverUrl: 'https://molboi.com'
+  }};
+</script>
+<script src="https://molboi.com/widget/dispatch-widget.js"></script>
 </body></html>"""
 
 def sidebar_services():
