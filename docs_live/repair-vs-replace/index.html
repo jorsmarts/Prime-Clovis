@@ -745,8 +745,19 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
           if(json.ok){
             // Also forward to Dispatch Portal
             try {
-              var dp = new FormData(form);
-              fetch('https://molboi.com/api/submit?apiKey=sk_2be74d199c304c44ad7eddb10d1176bd',{method:'POST',body:dp}).catch(function(){});
+              var fd = new FormData(form);
+              var dpBody = {
+                name:    (fd.get('fname')||'') + ' ' + (fd.get('lname')||''),
+                email:   fd.get('email')   || '',
+                phone:   fd.get('phone')   || '',
+                subject: 'Appliance Repair Request: ' + (fd.get('appliance') || ''),
+                message: fd.get('issue')   || ''
+              };
+              fetch('https://molboi.com/api/forms/submit',{
+                method:'POST',
+                headers:{'Content-Type':'application/json','x-api-key':'sk_2be74d199c304c44ad7eddb10d1176bd'},
+                body:JSON.stringify(dpBody)
+              }).catch(function(){});
             } catch(ex){}
             if(msg){
               msg.className='form-msg success';
