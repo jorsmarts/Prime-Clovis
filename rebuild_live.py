@@ -1146,7 +1146,6 @@ def build_contact():
   </div>
 </div>
 </div>"""
-    content += cta_banner()
     content += footer()
     write_page(f"{BASE}/contact-us/index.html", content)
 
