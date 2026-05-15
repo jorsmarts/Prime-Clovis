@@ -1071,7 +1071,7 @@ def build_contact():
         "Contact Us",
         "We're Ready to <span class='hi'>Help You Today</span>",
         "Where broken appliances meet their match. Reach out by phone, email, or WhatsApp — we respond fast.",
-        hero_btns(f"Call {PHONE}", f"tel:{PHONE_RAW}", "Book Online", "/book-an-appointment/")
+        hero_btns(f"Call {PHONE}", f"tel:{PHONE_RAW}", "Schedule Online", "#bookingForm")
     )
     content += breadcrumb([("Home","/"),("Contact Us","")])
     content += f"""
