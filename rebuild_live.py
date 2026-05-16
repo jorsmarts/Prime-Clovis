@@ -408,6 +408,28 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
   .content-wrap{grid-template-columns:1fr;gap:24px;}
   .process-grid{grid-template-columns:1fr!important;}
 }
+/* ── Dispatch Portal widget: prevent wobble when keyboard opens on mobile ── */
+#dp-toggle, #dp-window {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+@media (max-width: 768px) {
+  #dp-toggle {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 16px !important;
+  }
+  #dp-window {
+    position: fixed !important;
+    bottom: 88px !important;
+    right: 12px !important;
+    max-height: 60vh !important;
+    width: calc(100vw - 24px) !important;
+  }
+}
 """
 
 # ─────────────────────────────────────────────
