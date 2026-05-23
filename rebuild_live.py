@@ -511,7 +511,7 @@ SHARED_JS = """
         .then(function(r){return r.json();})
         .then(function(json){
           if(json.ok){
-            // Also forward to Dispatch Portal
+            // Also forward to Dispatch Portal (via server-side proxy)
             try {
               var fd = new FormData(form);
               var dpBody = {
@@ -521,9 +521,9 @@ SHARED_JS = """
                 subject: 'Appliance Repair Request: ' + (fd.get('appliance') || ''),
                 message: fd.get('issue')   || ''
               };
-              fetch('https://molboi.com/api/forms/submit',{
+              fetch('/dp-proxy.php',{
                 method:'POST',
-                headers:{'Content-Type':'application/json','x-api-key':'sk_2be74d199c304c44ad7eddb10d1176bd'},
+                headers:{'Content-Type':'application/json'},
                 body:JSON.stringify(dpBody)
               }).catch(function(){});
             } catch(ex){}
@@ -847,14 +847,7 @@ def footer():
 </div>
 </div>
 <script>{SHARED_JS}</script>
-<!-- Dispatch Portal Widget -->
-<script>
-  window.DispatchPortal = {{
-    apiKey: 'sk_2be74d199c304c44ad7eddb10d1176bd',
-    serverUrl: 'https://molboi.com'
-  }};
-</script>
-<script src="https://molboi.com/widget/dispatch-widget.js"></script>
+<script src="/widget.php"></script>
 </body></html>"""
 
 def sidebar_services():
