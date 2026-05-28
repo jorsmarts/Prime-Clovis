@@ -33,8 +33,8 @@ if (!$fname || !$phone || !$appliance || !$issue) {
 }
 
 $display_name = trim("$fname $lname");
-$subject = "New Booking — $appliance — $display_name";
-$body = "=== NEW APPOINTMENT REQUEST ===\n\n"
+$subject = "[Prime Appliance Repair Services Fresno] New Booking — $appliance — $display_name";
+$body = "=== NEW APPOINTMENT REQUEST ===\nPrime Appliance Repair Services Fresno\n\n"
       . "Name:      $display_name\n"
       . "Phone:     $phone\n"
       . "Email:     " . ($email ?: '(not provided)') . "\n"
@@ -89,7 +89,7 @@ if (!$ok($r,'235')) {
 $cmd("MAIL FROM:<$gmail_user>");
 $cmd("RCPT TO:<$recipient>");
 $cmd('DATA');
-$msg  = "From: Prime Booking <$gmail_user>\r\nTo: $recipient\r\nReply-To: $gmail_user\r\n";
+$msg  = "From: Prime Appliance Repair Services Fresno <$gmail_user>\r\nTo: $recipient\r\nReply-To: $gmail_user\r\n";
 $msg .= "Subject: $subject\r\nMIME-Version: 1.0\r\nContent-Type: text/plain; charset=UTF-8\r\n\r\n";
 $r = $cmd($msg . $body . "\r\n.");
 $cmd('QUIT');
