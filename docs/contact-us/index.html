@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
 <title>Contact Us | Prime Appliance Repair Clovis &amp; Fresno</title>
 <meta name="description" content="Contact Prime Appliance Repair Services. Call (559) 765-0303 or book online. Serving Fresno, Clovis &amp; surrounding areas.">
 <link rel="canonical" href="https://appliancerepairclovis.com/contact-us/">
@@ -494,7 +494,7 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
 </div>
 <div class="section-outer">
 <div class="section-box">
-  <div class="cal-contact-grid" style="display:grid;grid-template-columns:1fr 420px;gap:52px;align-items:start;">
+  <div class="cal-contact-grid">
     <div>
       <div class="section-badge" style="margin-bottom:18px;"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 010 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>Get In Touch</div>
       <h2 class="section-title">Let's Talk</h2>
@@ -573,7 +573,6 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
 </div>
 </div>
 <style>
-.cal-card { background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:32px; }
 .cal-card-title { font-size:20px; font-weight:800; color:#2b3340; margin:0 0 4px; }
 .cal-card-sub { font-size:13px; color:#6b7280; margin:0 0 20px; }
 .cal-wrap { border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; margin-bottom:20px; }
@@ -593,10 +592,13 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
 .cal-day.cal-empty { cursor:default; }
 .cal-fields { display:flex; flex-direction:column; gap:12px; border-top:1px solid #e5e7eb; padding-top:18px; }
 .cal-fields .bf-group { margin-bottom:0; }
+.cal-contact-grid { display:grid; grid-template-columns:1fr 420px; gap:52px; align-items:start; width:100%; box-sizing:border-box; }
+.cal-card { background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:32px; width:100%; box-sizing:border-box; min-width:0; }
 @media(max-width:768px) {
-  .cal-contact-grid { grid-template-columns:1fr !important; gap:32px !important; }
-  .cal-card { padding:20px 16px; }
+  .cal-contact-grid { grid-template-columns:1fr !important; gap:24px !important; }
+  .cal-card { padding:20px 16px; width:100% !important; max-width:100% !important; box-sizing:border-box !important; overflow:hidden; }
   .cal-day { padding:8px 2px; font-size:12px; }
+  .section-outer { overflow-x:hidden; }
 }
 </style>
 <script>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
 <title>Book an Appointment | Prime Appliance Repair Clovis</title>
 <meta name="description" content="Book your appliance repair appointment online. Quick and easy — fill in your details and we'll confirm same-day. Call (559) 765-0303.">
 <link rel="canonical" href="https://appliancerepairclovis.com/book-an-appointment/">
@@ -112,6 +112,12 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
 /* ── CONTENT + SIDEBAR LAYOUT ── */
 /* content-wrap is always wrapped in .section-outer > .section-box for consistent gutter */
 .content-wrap{width:100%;padding:0;display:grid;grid-template-columns:1fr 300px;gap:52px;align-items:start;}
+/* booking-specific two-col layout */
+.booking-layout{display:grid;grid-template-columns:1fr 300px;gap:52px;align-items:start;}
+/* booking form rows */
+.bf-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.bf-row-1{margin-bottom:14px;}
+.bf-form-box{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:36px;}
 .prose h2{font-size:clamp(20px,2.5vw,28px);font-weight:800;color:#2b3340;margin:36px 0 14px;line-height:1.25;}
 .prose h2:first-child{margin-top:0;}
 .prose h3{font-size:18px;font-weight:700;color:#445162;margin:28px 0 10px;}
@@ -326,13 +332,6 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
 .faq-a-inner{padding:0 22px 18px;}
 .faq-a-inner p{font-size:14px;color:#5a6472;line-height:1.75;margin:0;}
 
-/* booking-specific two-col layout */
-.booking-layout{display:grid;grid-template-columns:1fr 300px;gap:52px;align-items:start;}
-/* booking form rows */
-.bf-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
-.bf-row-1{margin-bottom:14px;}
-.bf-form-box{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:36px;}
-
 /* ── BRANDS GRID ── */
 .brands-grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:32px;}
 .brand-tile{background:#fff;border:1px solid #dde2e8;border-radius:10px;padding:20px;display:flex;align-items:center;justify-content:center;min-height:80px;font-size:14px;font-weight:700;color:#445162;transition:box-shadow .25s,border-color .25s,transform .25s;text-align:center;}
@@ -519,7 +518,7 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
               </select>
             </div>
           </div>
-          <div class="bf-group" style="margin-bottom:20px;"><label>Describe the Problem *</label><textarea name="issue" placeholder="Tell us what's happening with your appliance..." required></textarea></div>
+          <div class="bf-group bf-row-1"><label>Describe the Problem *</label><textarea name="issue" placeholder="Tell us what's happening with your appliance..." required></textarea></div>
           <button type="submit" class="bf-submit" style="width:100%;justify-content:center;font-size:15px;padding:15px;">
             <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             Book My Appointment
@@ -702,7 +701,7 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
     });
   });
 
-  // Booking form
+  // Booking form – real submission to PHP handler
   var form = document.getElementById('bookingForm');
   if(form){
     form.addEventListener('submit',function(e){
@@ -710,7 +709,7 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
       var msg = document.getElementById('formMsg');
       var btn = form.querySelector('.bf-submit');
       var origTxt = btn ? btn.innerHTML : '';
-      if(btn){ btn.disabled=true; btn.innerHTML='<svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:#1e2432;fill:none;stroke-width:2.5"><path d="M12 2a10 10 0 0 1 10 10"/></svg> Sending…'; }
+      if(btn){ btn.disabled=true; btn.innerHTML='<svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:#1e2432;fill:none;stroke-width:2.5;animation:spin 1s linear infinite"><path d="M12 2a10 10 0 0 1 10 10"/></svg> Sending…'; }
       var data = new FormData(form);
       fetch('/form-handler.php?t='+Date.now(),{method:'POST',body:data})
         .then(function(r){return r.json();})
