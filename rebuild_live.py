@@ -1157,36 +1157,152 @@ def build_contact():
       </div>
     </div>
     <div>
-      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:36px;">
-        <h3 style="font-size:20px;font-weight:800;color:#2b3340;margin:0 0 6px;">Send Us a Message</h3>
-        <p style="font-size:13px;color:#6b7280;margin:0 0 24px;">We'll get back to you as soon as possible.</p>
+      <div class="cal-card">
+        <h3 class="cal-card-title">Book an Appointment</h3>
+        <p class="cal-card-sub">Pick a date &amp; time, then fill in your details.</p>
         <form id="bookingForm">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
-            <div class="bf-group"><label>First Name</label><input type="text" name="fname" placeholder="John" required></div>
-            <div class="bf-group"><label>Last Name</label><input type="text" name="lname" placeholder="Smith"></div>
+          <div class="bf-honey"><label>Leave blank<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <input type="hidden" name="date" id="calDateVal">
+          <input type="hidden" name="time" id="calTimeVal">
+          <div class="cal-wrap">
+            <div class="cal-header">
+              <button type="button" class="cal-nav" id="calPrev">&#8249;</button>
+              <span class="cal-month-label" id="calMonthLabel"></span>
+              <button type="button" class="cal-nav" id="calNext">&#8250;</button>
+            </div>
+            <div class="cal-dow">
+              <span>Su</span><span>Mo</span><span>Tu</span><span>We</span>
+              <span>Th</span><span>Fr</span><span>Sa</span>
+            </div>
+            <div class="cal-grid" id="calGrid"></div>
           </div>
-          <div class="bf-group" style="margin-bottom:14px;"><label>Phone Number</label><input type="tel" name="phone" placeholder="(559) 000-0000" required></div>
-          <div class="bf-group" style="margin-bottom:14px;"><label>Email</label><input type="email" name="email" placeholder="john@email.com"></div>
-          <div class="bf-group" style="margin-bottom:14px;"><label>Appliance Type</label>
-            <select name="appliance">
-              <option value="">Select appliance...</option>
-              <option>Refrigerator</option><option>Washer</option><option>Dryer</option>
-              <option>Dishwasher</option><option>Oven / Range</option><option>Microwave</option>
-              <option>Freezer</option><option>Other</option>
-            </select>
+          <div class="cal-time-wrap" id="calTimeWrap" style="display:none;">
+            <p class="cal-time-label">Preferred Time &mdash; <span id="calSelectedDate"></span></p>
+            <div class="cal-slots" id="calSlots">
+              <button type="button" class="cal-slot" data-time="7:00 AM">7:00 AM</button>
+              <button type="button" class="cal-slot" data-time="8:00 AM">8:00 AM</button>
+              <button type="button" class="cal-slot" data-time="9:00 AM">9:00 AM</button>
+              <button type="button" class="cal-slot" data-time="10:00 AM">10:00 AM</button>
+              <button type="button" class="cal-slot" data-time="11:00 AM">11:00 AM</button>
+              <button type="button" class="cal-slot" data-time="12:00 PM">12:00 PM</button>
+              <button type="button" class="cal-slot" data-time="1:00 PM">1:00 PM</button>
+              <button type="button" class="cal-slot" data-time="2:00 PM">2:00 PM</button>
+              <button type="button" class="cal-slot" data-time="3:00 PM">3:00 PM</button>
+              <button type="button" class="cal-slot" data-time="4:00 PM">4:00 PM</button>
+              <button type="button" class="cal-slot" data-time="5:00 PM">5:00 PM</button>
+              <button type="button" class="cal-slot" data-time="6:00 PM">6:00 PM</button>
+            </div>
           </div>
-          <div class="bf-group" style="margin-bottom:14px;"><label>Describe the Issue</label><textarea name="issue" placeholder="Tell us what's happening with your appliance..." required></textarea></div>
-          <button type="submit" class="bf-submit" style="width:100%;justify-content:center;">
-            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            Send Message
-          </button>
+          <div class="cal-fields" id="calFields" style="display:none;">
+            <div class="bf-group"><label>Your Name *</label><input type="text" name="fname" placeholder="John Smith" required></div>
+            <div class="bf-group"><label>Phone Number *</label><input type="tel" name="phone" placeholder="(559) 000-0000" required></div>
+            <div class="bf-group"><label>Message</label><textarea name="issue" placeholder="Briefly describe the appliance issue..." rows="3"></textarea></div>
+            <button type="submit" class="bf-submit" style="width:100%;justify-content:center;margin-top:4px;">
+              <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Confirm Appointment
+            </button>
+          </div>
         </form>
         <div id="formMsg" class="form-msg"></div>
       </div>
     </div>
   </div>
 </div>
-</div>"""
+</div>
+<style>
+.cal-card {{ background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:32px; }}
+.cal-card-title {{ font-size:20px; font-weight:800; color:#2b3340; margin:0 0 4px; }}
+.cal-card-sub {{ font-size:13px; color:#6b7280; margin:0 0 20px; }}
+.cal-wrap {{ border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; margin-bottom:16px; }}
+.cal-header {{ display:flex; align-items:center; justify-content:space-between; background:#2b3340; padding:12px 16px; }}
+.cal-month-label {{ font-size:15px; font-weight:700; color:#fff; }}
+.cal-nav {{ background:none; border:none; color:#d4f000; font-size:22px; cursor:pointer; padding:0 6px; line-height:1; }}
+.cal-nav:hover {{ color:#fff; }}
+.cal-dow {{ display:grid; grid-template-columns:repeat(7,1fr); background:#f8fafc; border-bottom:1px solid #e5e7eb; }}
+.cal-dow span {{ text-align:center; font-size:11px; font-weight:700; color:#9ca3af; padding:8px 0; text-transform:uppercase; }}
+.cal-grid {{ display:grid; grid-template-columns:repeat(7,1fr); }}
+.cal-day {{ text-align:center; padding:9px 4px; font-size:13px; font-weight:600; color:#2b3340; cursor:pointer; transition:background .15s,color .15s; position:relative; }}
+.cal-day:hover:not(.cal-empty):not(.cal-past):not(.cal-sun) {{ background:#d4f000; color:#1e2432; }}
+.cal-day.cal-today {{ background:#f0fdf4; color:#16a34a; font-weight:800; }}
+.cal-day.cal-today::after {{ content:''; position:absolute; bottom:4px; left:50%; transform:translateX(-50%); width:4px; height:4px; border-radius:50%; background:#16a34a; }}
+.cal-day.cal-selected {{ background:#2b3340 !important; color:#d4f000 !important; border-radius:6px; }}
+.cal-day.cal-past, .cal-day.cal-sun {{ color:#d1d5db; cursor:default; pointer-events:none; }}
+.cal-day.cal-empty {{ cursor:default; }}
+.cal-time-wrap {{ margin-bottom:16px; }}
+.cal-time-label {{ font-size:13px; font-weight:700; color:#2b3340; margin:0 0 10px; }}
+.cal-slots {{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }}
+.cal-slot {{ background:#f8fafc; border:1.5px solid #e5e7eb; border-radius:8px; padding:9px 4px; font-size:13px; font-weight:600; color:#2b3340; cursor:pointer; transition:all .15s; }}
+.cal-slot:hover {{ border-color:#2b3340; background:#f0f4f8; }}
+.cal-slot.cal-slot-selected {{ background:#2b3340; border-color:#2b3340; color:#d4f000; }}
+.cal-fields {{ display:flex; flex-direction:column; gap:12px; border-top:1px solid #e5e7eb; padding-top:16px; margin-top:4px; }}
+.cal-fields .bf-group {{ margin-bottom:0; }}
+@media(max-width:768px){{
+  .cal-card {{ padding:20px 16px; }}
+  .cal-slots {{ grid-template-columns:repeat(3,1fr); }}
+}}
+</style>
+<script>
+(function(){{
+  var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var today=new Date(); today.setHours(0,0,0,0);
+  var cur=new Date(today.getFullYear(),today.getMonth(),1);
+  function render(){{
+    var label=document.getElementById('calMonthLabel');
+    var grid=document.getElementById('calGrid');
+    if(!label||!grid) return;
+    label.textContent=months[cur.getMonth()]+' '+cur.getFullYear();
+    var first=new Date(cur.getFullYear(),cur.getMonth(),1).getDay();
+    var days=new Date(cur.getFullYear(),cur.getMonth()+1,0).getDate();
+    var selTs=document.getElementById('calDateVal').value;
+    var html='';
+    for(var i=0;i<first;i++) html+='<div class="cal-day cal-empty"></div>';
+    for(var d=1;d<=days;d++){{
+      var dt=new Date(cur.getFullYear(),cur.getMonth(),d);
+      var cls='cal-day';
+      if(dt.getTime()===today.getTime()) cls+=' cal-today';
+      if(dt<today) cls+=' cal-past';
+      if(dt.getDay()===0) cls+=' cal-sun';
+      var label2=months[dt.getMonth()]+' '+dt.getDate()+', '+dt.getFullYear();
+      if(selTs===label2) cls+=' cal-selected';
+      html+='<div class="'+cls+'" data-label="'+label2+'">'+d+'</div>';
+    }}
+    grid.innerHTML=html;
+    grid.querySelectorAll('.cal-day:not(.cal-empty):not(.cal-past):not(.cal-sun)').forEach(function(el){{
+      el.addEventListener('click',function(){{
+        document.getElementById('calDateVal').value=el.dataset.label;
+        document.getElementById('calTimeVal').value='';
+        render();
+        var tw=document.getElementById('calTimeWrap');
+        tw.style.display='block';
+        document.getElementById('calSelectedDate').textContent=el.dataset.label;
+        document.querySelectorAll('.cal-slot').forEach(function(s){{s.classList.remove('cal-slot-selected');}});
+        document.getElementById('calFields').style.display='none';
+        tw.scrollIntoView({{behavior:'smooth',block:'nearest'}});
+      }});
+    }});
+  }}
+  document.getElementById('calPrev').addEventListener('click',function(){{
+    var minMonth=new Date(today.getFullYear(),today.getMonth(),1);
+    cur.setMonth(cur.getMonth()-1);
+    if(cur<minMonth) cur=new Date(minMonth);
+    render();
+  }});
+  document.getElementById('calNext').addEventListener('click',function(){{
+    cur.setMonth(cur.getMonth()+1); render();
+  }});
+  document.querySelectorAll('.cal-slot').forEach(function(btn){{
+    btn.addEventListener('click',function(){{
+      document.querySelectorAll('.cal-slot').forEach(function(s){{s.classList.remove('cal-slot-selected');}});
+      btn.classList.add('cal-slot-selected');
+      document.getElementById('calTimeVal').value=btn.dataset.time;
+      var cf=document.getElementById('calFields');
+      cf.style.display='flex';
+      cf.scrollIntoView({{behavior:'smooth',block:'nearest'}});
+    }});
+  }});
+  render();
+}})();
+</script>"""
     content += footer()
     write_page(f"{BASE}/contact-us/index.html", content)
 

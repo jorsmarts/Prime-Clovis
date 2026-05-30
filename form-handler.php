@@ -25,6 +25,8 @@ $email     = clean($_POST['email']     ?? $data['email']     ?? '');
 $appliance = clean($_POST['appliance'] ?? $data['appliance'] ?? $_POST['appliance_type'] ?? $data['appliance_type'] ?? '');
 $issue     = clean($_POST['issue']     ?? $data['issue']     ?? $_POST['issue_description'] ?? $data['issue_description'] ?? '');
 $zip       = clean($_POST['zip']       ?? $data['zip']       ?? $_POST['zip_code'] ?? $data['zip_code'] ?? '');
+$date      = clean($_POST['date']      ?? $data['date']      ?? '');
+$time      = clean($_POST['time']      ?? $data['time']      ?? '');
 
 if (!$fname || !$phone || !$appliance || !$issue) {
     http_response_code(400);
@@ -39,8 +41,10 @@ $body = "=== NEW APPOINTMENT REQUEST ===\nPrime Appliance Repair Services Fresno
       . "Phone:     $phone\n"
       . "Email:     " . ($email ?: '(not provided)') . "\n"
       . "Zip:       " . ($zip   ?: '(not provided)') . "\n\n"
-      . "Appliance: $appliance\n\n"
-      . "Problem:\n$issue\n\n"
+      . "Date:      " . ($date  ?: '(not selected)') . "\n"
+      . "Time:      " . ($time  ?: '(not selected)') . "\n\n"
+      . "Appliance: " . ($appliance ?: '(not provided)') . "\n\n"
+      . "Message:\n$issue\n\n"
       . "---\n"
       . "Submitted: " . date('Y-m-d H:i:s T') . "\n"
       . "IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'unknown') . "\n";
