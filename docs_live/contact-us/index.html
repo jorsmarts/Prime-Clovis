@@ -775,6 +775,44 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
   });
 
   // Booking form – real submission to PHP handler
+  // ── 11 Pros inbox routing (replaces the old Dispatch Portal integration) ──
+  // Tries the 11 Pros API first, falls back to calling the Supabase RPC
+  // directly if that's unreachable — same dual-path the app's own embed uses.
+  var ELEVEN_PROS_OWNER  = '9c454c12-73c0-45cd-bb9c-3269522745e8';
+  var ELEVEN_PROS_SB_URL = 'https://unbyrrzewjapszzxjceq.supabase.co';
+  var ELEVEN_PROS_SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVuYnlycnpld2phcHN6enhqY2VxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyNjEzNDEsImV4cCI6MjA5MjgzNzM0MX0.zjR9x2ZxzFvU0SV5hD1YO6HBI6fq0pEUm36fIZT1gB4';
+  var ELEVEN_PROS_DOMAIN = 'appliancerepairclovis.com';
+
+  function submitToElevenProsRpc(name, phone, zip, notes) {
+    var rpcBody = JSON.stringify({
+      p_owner_id: ELEVEN_PROS_OWNER, p_name: name, p_phone: phone,
+      p_zip: zip, p_notes: notes, p_preferred_date: null, p_source: ELEVEN_PROS_DOMAIN
+    });
+    return fetch(ELEVEN_PROS_SB_URL + '/rest/v1/rpc/public_submit_booking', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': ELEVEN_PROS_SB_KEY,
+        'Authorization': 'Bearer ' + ELEVEN_PROS_SB_KEY
+      },
+      body: rpcBody
+    }).catch(function(){});
+  }
+
+  function submitToElevenPros(name, phone, zip, notes) {
+    var submitBody = JSON.stringify({
+      owner_id: ELEVEN_PROS_OWNER, name: name, phone: phone, zip: zip, notes: notes,
+      preferred_date: null, source: 'website_form'
+    });
+    fetch('https://11pros.com/api/book', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: submitBody
+    })
+    .then(function(res){ if (!res.ok) submitToElevenProsRpc(name, phone, zip, notes); })
+    .catch(function(){ submitToElevenProsRpc(name, phone, zip, notes); });
+  }
+
   var form = document.getElementById('bookingForm');
   if(form){
     form.addEventListener('submit',function(e){
@@ -788,22 +826,13 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
         .then(function(r){return r.json();})
         .then(function(json){
           if(json.ok){
-            // Also forward to Dispatch Portal (via server-side proxy)
+            // Also submit to the 11 Pros inbox — independent of the email
+            // result, doesn't gate or affect the form's success/error UI.
             try {
               var fd = new FormData(form);
-              var dpBody = {
-                name:    (fd.get('fname')||'') + ' ' + (fd.get('lname')||''),
-                email:   fd.get('email')   || '',
-                phone:   fd.get('phone')   || '',
-                subject: 'Appliance Repair Request: ' + (fd.get('appliance') || ''),
-                message: fd.get('issue')   || ''
-              };
-              fetch('/dp-proxy.php',{
-                method:'POST',
-                headers:{'Content-Type':'application/json'},
-                body:JSON.stringify(dpBody)
-              }).catch(function(){});
-            } catch(ex){}
+              var notes = 'Appliance: ' + (fd.get('appliance') || '') + ' | Issue: ' + (fd.get('issue') || '');
+              submitToElevenPros(fd.get('fname') || '', fd.get('phone') || '', fd.get('zip') || '', notes);
+            } catch(ex) {}
             if(msg){
               msg.className='form-msg success';
               msg.textContent='✅ Thank you! We received your request and will call you to confirm shortly.';
@@ -846,5 +875,4 @@ body{font-family:'Inter','Segoe UI',sans-serif;background:#fafbfc;color:#5a6472;
   }
 }());
 </script>
-<script src="/widget.php"></script>
 </body></html>
